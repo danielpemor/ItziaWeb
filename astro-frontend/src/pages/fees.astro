@@ -1,0 +1,374 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout
+  title="Fees & Pricing — Dr. Itzia Perez Morales"
+  description="Transparent pricing for psychological therapy, EMDR, and assessment. Self-funded and insurance rates. Session bundles available."
+>
+  <div class="pt-28 pb-20" style="background:#FAF8F4;">
+    <div class="section-container">
+
+      <!-- Page header -->
+      <div class="max-w-2xl mb-16">
+        <a href="/"
+          class="inline-flex items-center gap-2 text-sm mb-8 transition-colors"
+          style="color:#78716C;"
+        >
+          <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
+            <path d="M8 3L4 7.5L8 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          Back to home
+        </a>
+        <div
+          class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium uppercase tracking-widest mb-5"
+          style="background:rgba(29,78,95,0.07); color:#1D4E5F; border:1px solid rgba(29,78,95,0.1);"
+        >
+          Fees & Pricing
+        </div>
+        <h1 class="font-display text-display-md text-warm mb-4 leading-tight">
+          Transparent fees,<br/>
+          <em class="not-italic" style="background:linear-gradient(135deg,#1D4E5F,#7A9E7E); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">
+            no surprises.
+          </em>
+        </h1>
+        <p class="leading-relaxed" style="color:#44403C;">
+          All fees are agreed at the time of initial enquiry. 
+          Session bundles are available after your initial assessment, 
+          based on your treatment plan.
+        </p>
+      </div>
+
+      <!-- Tab switcher — Self-funded vs Insured -->
+      <div id="fee-tabs" class="mb-12">
+        <div
+          class="inline-flex p-1 rounded-xl mb-10"
+          style="background:rgba(29,78,95,0.06); border:1px solid rgba(29,78,95,0.1);"
+        >
+          <button
+            id="tab-self"
+            onclick="switchTab('self')"
+            class="px-6 py-2.5 rounded-lg text-sm font-medium transition-all"
+            style="background:white; color:#1D4E5F; box-shadow:0 1px 4px rgba(29,78,95,0.1);"
+          >
+            Self-Funded
+          </button>
+          <button
+            id="tab-insured"
+            onclick="switchTab('insured')"
+            class="px-6 py-2.5 rounded-lg text-sm font-medium transition-all"
+            style="color:#78716C;"
+          >
+            Insured
+          </button>
+        </div>
+
+        <!-- Self-funded table -->
+        <div id="panel-self">
+          <div class="overflow-hidden rounded-2xl border" style="border-color:rgba(29,78,95,0.1);">
+            <table class="w-full">
+              <thead>
+                <tr style="background:rgba(29,78,95,0.05);">
+                  <th class="text-left px-6 py-4 text-xs font-semibold uppercase tracking-widest" style="color:#1D4E5F;">Service</th>
+                  <th class="text-right px-6 py-4 text-xs font-semibold uppercase tracking-widest" style="color:#1D4E5F;">Fee</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y" style="divide-color:rgba(29,78,95,0.06);">
+                {[
+                  { service: 'Initial Consultation', detail: '15 minutes', fee: 'Free' , highlight: true },
+                  { service: 'Initial Assessment', detail: 'Hourly rate', fee: '£140' },
+                  { service: 'Psychological Intervention', detail: '50 minutes', fee: '£120' },
+                  { service: 'EMDR Extended Session', detail: '90 minutes', fee: '£180' },
+                  { service: 'EMDR Extended Session', detail: '2 hours', fee: '£240' },
+                  { service: 'Follow-Up Session', detail: '30 minutes', fee: '£60' },
+                  { service: 'Medico-Legal Report', detail: 'Hourly rate', fee: '£150' },
+                  { service: 'Mentoring', detail: 'Per session', fee: '£60' },
+                ].map(({ service, detail, fee, highlight }) => (
+                  <tr
+                    class="transition-colors"
+                    style={`background:${highlight ? 'rgba(29,78,95,0.03)' : 'white'};`}
+                  >
+                    <td class="px-6 py-4">
+                      <p class="text-sm font-medium text-warm">{service}</p>
+                      <p class="text-xs mt-0.5" style="color:#78716C;">{detail}</p>
+                    </td>
+                    <td class="px-6 py-4 text-right">
+                      <span
+                        class="font-display text-xl font-medium"
+                        style={`color:${highlight ? '#1D4E5F' : '#1C1917'};`}
+                      >
+                        {fee}
+                      </span>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Insured table -->
+        <div id="panel-insured" class="hidden">
+          <div class="overflow-hidden rounded-2xl border" style="border-color:rgba(29,78,95,0.1);">
+            <div class="px-6 py-4 flex items-center gap-3" style="background:rgba(29,78,95,0.04); border-bottom:1px solid rgba(29,78,95,0.08);">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1D4E5F" stroke-width="1.5" stroke-linecap="round">
+                <circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/>
+              </svg>
+              <p class="text-xs" style="color:#44403C;">
+                Registered with <strong>AXA, Aviva, Cigna, Healix,</strong> and <strong>Vitality</strong>. Please confirm coverage with your insurer before booking.
+              </p>
+            </div>
+            <table class="w-full">
+              <thead>
+                <tr style="background:rgba(29,78,95,0.05);">
+                  <th class="text-left px-6 py-4 text-xs font-semibold uppercase tracking-widest" style="color:#1D4E5F;">Service</th>
+                  <th class="text-right px-6 py-4 text-xs font-semibold uppercase tracking-widest" style="color:#1D4E5F;">Fee</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y" style="divide-color:rgba(29,78,95,0.06);">
+                {[
+                  { service: 'Initial Consultation', detail: '15 minutes', fee: 'Free' },
+                  { service: 'Initial Assessment', detail: 'Hourly rate', fee: '£120' },
+                  { service: 'Psychological Intervention', detail: '50 minutes', fee: '£120' },
+                  { service: 'EMDR Extended Session', detail: '2 hours only', fee: '£240' },
+                  { service: 'Medico-Legal Report', detail: 'Hourly rate', fee: '£150' },
+                ].map(({ service, detail, fee }) => (
+                  <tr class="transition-colors" style="background:white;">
+                    <td class="px-6 py-4">
+                      <p class="text-sm font-medium text-warm">{service}</p>
+                      <p class="text-xs mt-0.5" style="color:#78716C;">{detail}</p>
+                    </td>
+                    <td class="px-6 py-4 text-right">
+                      <span class="font-display text-xl font-medium text-warm">{fee}</span>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bundles — solo self-funded -->
+      <div id="bundles-section">
+        <div class="flex items-end justify-between gap-4 mb-8">
+          <div>
+            <h2 class="font-display text-display-sm text-warm mb-2">Session Bundles</h2>
+            <p class="text-sm" style="color:#78716C;">
+              Available to self-funded patients after initial assessment. Bundle type agreed based on treatment plan.
+            </p>
+          </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+          {[
+            {
+              name: 'Monthly Sessions',
+              desc: 'Flexible monthly plan',
+              detail: '4 standard sessions',
+              price: '£450',
+              saving: 'Save £30',
+              color: 'teal',
+            },
+            {
+              name: 'Integrative Plan',
+              desc: 'Full treatment package',
+              detail: 'Assessment + 10 sessions',
+              price: '£1,200',
+              saving: 'Save £140',
+              color: 'teal',
+            },
+            {
+              name: 'CBT Start',
+              desc: 'Short-term CBT course',
+              detail: '6 sessions',
+              price: '£700',
+              saving: 'Save £20',
+              color: 'teal',
+            },
+            {
+              name: 'CBT Full',
+              desc: 'Complete CBT programme',
+              detail: '12 sessions',
+              price: '£1,380',
+              saving: 'Save £60',
+              color: 'teal',
+            },
+            {
+              name: 'CAT Start',
+              desc: 'Short-term CAT course',
+              detail: '8 sessions',
+              price: '£940',
+              saving: 'Save £20',
+              color: 'teal',
+            },
+            {
+              name: 'CAT Full',
+              desc: 'Complete CAT programme',
+              detail: '16 sessions',
+              price: '£1,850',
+              saving: 'Save £70',
+              color: 'teal',
+            },
+            {
+              name: 'EMDR+ Monthly',
+              desc: '90-min sessions',
+              detail: '4 sessions of 90 minutes',
+              price: '£700',
+              saving: 'Save £20',
+              color: 'terra',
+            },
+            {
+              name: 'EMDR+ Monthly',
+              desc: '2-hour sessions',
+              detail: '4 sessions of 2 hours',
+              price: '£900',
+              saving: 'Save £60',
+              color: 'terra',
+            },
+            {
+              name: 'EMDR+ Intensive',
+              desc: '90-min intensive',
+              detail: '8 sessions of 90 minutes',
+              price: '£1,400',
+              saving: 'Save £40',
+              color: 'terra',
+            },
+            {
+              name: 'EMDR+ Intensive',
+              desc: '2-hour intensive',
+              detail: '8 sessions of 2 hours',
+              price: '£1,800',
+              saving: 'Save £120',
+              color: 'terra',
+            },
+          ].map(({ name, desc, detail, price, saving, color }) => (
+            <div
+              class="p-6 rounded-2xl transition-all hover:shadow-md"
+              style={`background:white; border:1px solid ${color === 'terra' ? 'rgba(193,125,92,0.12)' : 'rgba(29,78,95,0.08)'};`}
+            >
+              <div class="flex items-start justify-between mb-4">
+                <div
+                  class="px-2.5 py-1 rounded-full text-xs font-medium"
+                  style={`background:${color === 'terra' ? 'rgba(193,125,92,0.08)' : 'rgba(29,78,95,0.07)'}; color:${color === 'terra' ? '#C17D5C' : '#1D4E5F'};`}
+                >
+                  {saving}
+                </div>
+              </div>
+              <p class="font-display text-xl text-warm font-medium mb-0.5">{name}</p>
+              <p class="text-xs mb-1" style="color:#78716C;">{desc}</p>
+              <p class="text-xs mb-4" style="color:#44403C;">{detail}</p>
+              <div class="flex items-end justify-between">
+                <span class="font-display text-2xl font-medium text-warm">{price}</span>
+                <a
+                  href="/booking"
+                  class="text-xs font-medium px-4 py-2 rounded-full transition-all"
+                  style={`background:${color === 'terra' ? 'rgba(193,125,92,0.08)' : 'rgba(29,78,95,0.07)'}; color:${color === 'terra' ? '#C17D5C' : '#1D4E5F'}; border:1px solid ${color === 'terra' ? 'rgba(193,125,92,0.2)' : 'rgba(29,78,95,0.15)'};`}
+                >
+                  Enquire →
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <!-- Note -->
+        <div
+          class="mt-8 p-5 rounded-2xl flex items-start gap-3"
+          style="background:rgba(29,78,95,0.04); border:1px solid rgba(29,78,95,0.08);"
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1D4E5F" stroke-width="1.5" stroke-linecap="round" class="flex-shrink-0 mt-0.5">
+            <circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/>
+          </svg>
+          <div>
+            <p class="text-sm font-medium text-warm mb-1">About bundles</p>
+            <p class="text-sm" style="color:#44403C;">
+              Bundles are only available after your initial assessment, 
+              based on the treatment plan discussed. Payment can be made 
+              by bank transfer or card. Late cancellations within 48 hours 
+              are charged at the full session rate if they cannot be rescheduled 
+              in the same week.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Final CTA -->
+      <div class="mt-16 text-center">
+        <p class="font-display text-display-sm text-warm mb-3">
+          Not sure where to start?
+        </p>
+        <p class="text-sm mb-8" style="color:#78716C;">
+          Book a free 15-minute consultation and we'll discuss the right option for you.
+        </p>
+        <div class="flex flex-wrap items-center justify-center gap-4">
+          <a
+            href="https://calendly.com/itzia-morales/30min"
+            target="_blank"
+            class="inline-flex items-center gap-2.5 px-8 py-4 text-white font-medium rounded-full text-sm hover:shadow-lg hover:-translate-y-0.5 transition-all"
+            style="background:linear-gradient(135deg,#1D4E5F,#2a6b82);"
+          >
+            Book Free Consultation
+            <svg width="15" height="15" viewBox="0 0 16 16" fill="none">
+              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </a>
+          <a
+            href="/#faq"
+            class="inline-flex items-center gap-2 px-8 py-4 font-medium rounded-full text-sm bg-white transition-all"
+            style="border:1.5px solid rgba(29,78,95,0.2); color:#1D4E5F;"
+          >
+            Read FAQ
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <Footer slot="footer" />
+</BaseLayout>
+
+<script>
+  function switchTab(tab: string) {
+    const selfPanel = document.getElementById('panel-self');
+    const insuredPanel = document.getElementById('panel-insured');
+    const bundlesSection = document.getElementById('bundles-section');
+    const tabSelf = document.getElementById('tab-self');
+    const tabInsured = document.getElementById('tab-insured');
+
+    if (tab === 'self') {
+      selfPanel?.classList.remove('hidden');
+      insuredPanel?.classList.add('hidden');
+      bundlesSection?.classList.remove('hidden');
+      if (tabSelf) {
+        tabSelf.style.background = 'white';
+        tabSelf.style.color = '#1D4E5F';
+        tabSelf.style.boxShadow = '0 1px 4px rgba(29,78,95,0.1)';
+      }
+      if (tabInsured) {
+        tabInsured.style.background = 'transparent';
+        tabInsured.style.color = '#78716C';
+        tabInsured.style.boxShadow = 'none';
+      }
+    } else {
+      selfPanel?.classList.add('hidden');
+      insuredPanel?.classList.remove('hidden');
+      bundlesSection?.classList.add('hidden');
+      if (tabInsured) {
+        tabInsured.style.background = 'white';
+        tabInsured.style.color = '#1D4E5F';
+        tabInsured.style.boxShadow = '0 1px 4px rgba(29,78,95,0.1)';
+      }
+      if (tabSelf) {
+        tabSelf.style.background = 'transparent';
+        tabSelf.style.color = '#78716C';
+        tabSelf.style.boxShadow = 'none';
+      }
+    }
+  }
+
+  // Expose to window for onclick handlers
+  (window as any).switchTab = switchTab;
+</script>

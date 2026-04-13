@@ -1,0 +1,276 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.tsx';
+import { ServicesSection } from '../components/ServiceCard.tsx';
+import AboutSection from '../components/AboutSection.tsx';
+import ApproachSection from '../components/ApproachSection.tsx';
+import FAQSection from '../components/FAQSection.tsx';
+import LogoStrip from '../components/LogoStrip.tsx';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout
+  title="Dr. Itzia Perez Morales — Highly Specialist Clinical Psychologist"
+  description="Highly Specialist Clinical Psychologist specialising in trauma, anxiety, and complex presentations. CBT, EMDR, and CAT therapy online. HCPC registered, BPS chartered."
+>
+  <Hero client:load />
+  <LogoStrip client:load />
+  <ServicesSection client:load />
+
+  <!-- Pricing preview — solo lo esencial -->
+  <div class="py-20 border-y" style="background:#ffffff; border-color:rgba(29,78,95,0.07);">
+    <div class="section-container">
+      
+      <!-- Header -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+        <div>
+          <div
+            class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium uppercase tracking-widest mb-4"
+            style="background:rgba(29,78,95,0.07); color:#1D4E5F; border:1px solid rgba(29,78,95,0.1);"
+          >
+            Fees
+          </div>
+          <h2 class="font-display text-display-md text-warm leading-tight">
+            Simple,<br/>
+            <em class="not-italic" style="background:linear-gradient(135deg,#1D4E5F,#7A9E7E); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">
+              transparent pricing
+            </em>
+          </h2>
+        </div>
+        <div class="flex flex-col gap-2 text-sm" style="color:#78716C; max-width:320px;">
+          <p>All fees agreed at initial enquiry. Insurance accepted from AXA, Aviva, Cigna, Healix, and Vitality.</p>
+          <a href="/fees"
+            class="font-medium underline underline-offset-2 self-start transition-colors"
+            style="color:#1D4E5F;"
+          >
+            View full pricing & bundles →
+          </a>
+        </div>
+      </div>
+
+      <!-- 3 main cards -->
+      <div class="grid md:grid-cols-3 gap-5 mb-8">
+
+        <!-- Free consultation -->
+        <div
+          class="relative p-7 rounded-2xl overflow-hidden"
+          style="background:linear-gradient(135deg,#1D4E5F,#0f2d38); border:1px solid rgba(29,78,95,0.1);"
+        >
+          <div
+            class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium mb-5"
+            style="background:rgba(255,255,255,0.15); color:rgba(255,255,255,0.9);"
+          >
+            Start here
+          </div>
+          <p class="font-display text-3xl text-white font-medium mb-1">Free</p>
+          <p class="text-sm font-medium text-white mb-1">Initial Consultation</p>
+          <p class="text-xs mb-6" style="color:rgba(255,255,255,0.5);">15 minutes · No commitment</p>
+          <ul class="space-y-2 mb-7">
+            {['Discuss your goals & needs', 'Ask any questions', 'No referral needed'].map(f => (
+              <li class="flex items-center gap-2 text-xs" style="color:rgba(255,255,255,0.7);">
+                <span class="w-3.5 h-3.5 rounded-full flex items-center justify-center flex-shrink-0"
+                  style="background:rgba(255,255,255,0.15);">
+                  <svg width="7" height="7" viewBox="0 0 8 8" fill="none">
+                    <path d="M1 4l2 2 4-4" stroke="rgba(255,255,255,0.9)" stroke-width="1.5" stroke-linecap="round"/>
+                  </svg>
+                </span>
+                {f}
+              </li>
+            ))}
+          </ul>
+          <a
+            href="https://calendly.com/itzia-morales/30min"
+            target="_blank"
+            class="block w-full text-center py-3 text-sm font-medium rounded-xl transition-all"
+            style="background:rgba(255,255,255,0.15); color:white; border:1px solid rgba(255,255,255,0.25);"
+          >
+            Book Free Consultation
+          </a>
+        </div>
+
+        <!-- Standard session -->
+        <div
+          class="p-7 rounded-2xl"
+          style="background:#FAF8F4; border:1px solid rgba(29,78,95,0.08);"
+        >
+          <div
+            class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium mb-5"
+            style="background:rgba(29,78,95,0.08); color:#1D4E5F;"
+          >
+            Most common
+          </div>
+          <p class="font-display text-3xl text-warm font-medium mb-1">£120</p>
+          <p class="text-sm font-medium text-warm mb-1">Psychological Therapy</p>
+          <p class="text-xs mb-6" style="color:#78716C;">50 minutes · Self-funded & insured</p>
+          <ul class="space-y-2 mb-7">
+            {['CBT, EMDR, CAT, ACT or CFT', 'Personalised to your needs', 'Insurance accepted'].map(f => (
+              <li class="flex items-center gap-2 text-xs" style="color:#44403C;">
+                <span class="w-3.5 h-3.5 rounded-full flex items-center justify-center flex-shrink-0"
+                  style="background:rgba(29,78,95,0.1);">
+                  <svg width="7" height="7" viewBox="0 0 8 8" fill="none">
+                    <path d="M1 4l2 2 4-4" stroke="#1D4E5F" stroke-width="1.5" stroke-linecap="round"/>
+                  </svg>
+                </span>
+                {f}
+              </li>
+            ))}
+          </ul>
+          <a
+            href="/booking?service=psychological-intervention"
+            class="block w-full text-center py-3 text-sm font-medium rounded-xl text-white transition-all hover:opacity-90"
+            style="background:linear-gradient(135deg,#1D4E5F,#2a6b82);"
+          >
+            Book a Session
+          </a>
+        </div>
+
+        <!-- EMDR -->
+        <div
+          class="p-7 rounded-2xl"
+          style="background:#FAF8F4; border:1px solid rgba(193,125,92,0.15);"
+        >
+          <div
+            class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium mb-5"
+            style="background:rgba(193,125,92,0.08); color:#C17D5C; border:1px solid rgba(193,125,92,0.15);"
+          >
+            Specialist
+          </div>
+          <p class="font-display text-3xl text-warm font-medium mb-1">£180</p>
+          <p class="text-sm font-medium text-warm mb-1">EMDR Extended Session</p>
+          <p class="text-xs mb-6" style="color:#78716C;">90 min · 2hr sessions also available</p>
+          <ul class="space-y-2 mb-7">
+            {['Trauma processing', 'Weekly or intensive', '2hr sessions at £240'].map(f => (
+              <li class="flex items-center gap-2 text-xs" style="color:#44403C;">
+                <span class="w-3.5 h-3.5 rounded-full flex items-center justify-center flex-shrink-0"
+                  style="background:rgba(193,125,92,0.1);">
+                  <svg width="7" height="7" viewBox="0 0 8 8" fill="none">
+                    <path d="M1 4l2 2 4-4" stroke="#C17D5C" stroke-width="1.5" stroke-linecap="round"/>
+                  </svg>
+                </span>
+                {f}
+              </li>
+            ))}
+          </ul>
+          <a
+            href="/booking?service=emdr-standard"
+            class="block w-full text-center py-3 text-sm font-medium rounded-xl transition-all"
+            style="background:rgba(193,125,92,0.1); color:#C17D5C; border:1px solid rgba(193,125,92,0.2);"
+          >
+            Book EMDR Session
+          </a>
+        </div>
+      </div>
+
+      <!-- Bundle teaser -->
+      <div
+        class="flex flex-col sm:flex-row items-center justify-between gap-4 p-5 rounded-2xl"
+        style="background:rgba(29,78,95,0.04); border:1px solid rgba(29,78,95,0.08);"
+      >
+        <div class="flex items-center gap-4">
+          <div
+            class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
+            style="background:rgba(29,78,95,0.08);"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1D4E5F" stroke-width="1.5" stroke-linecap="round">
+              <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+            </svg>
+          </div>
+          <div>
+            <p class="text-sm font-medium text-warm">Session bundles available</p>
+            <p class="text-xs" style="color:#78716C;">
+              Save with monthly plans, CBT, CAT or EMDR packages from £450
+            </p>
+          </div>
+        </div>
+        <a
+          href="/fees"
+          class="flex-shrink-0 text-sm font-medium px-5 py-2.5 rounded-full transition-all whitespace-nowrap"
+          style="color:#1D4E5F; border:1.5px solid rgba(29,78,95,0.2); background:white;"
+        >
+          View all bundles →
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+  <AboutSection client:load />
+  <ApproachSection client:load />
+  <FAQSection client:load />
+
+  <!-- Testimonials -->
+  <div class="py-20 border-y" style="background: #ffffff; border-color: rgba(29,78,95,0.08);">
+    <div class="section-container">
+      <div class="grid md:grid-cols-3 gap-6">
+        {[
+          {
+            quote: "Dr. Itzia helped me understand patterns I'd carried for years. The EMDR sessions were transformative — I finally feel free from memories that once paralysed me.",
+            name: 'A.K.', role: 'EMDR therapy client',
+          },
+          {
+            quote: "The initial assessment was thorough and compassionate. Having a shared formulation made me feel genuinely understood, not just diagnosed.",
+            name: 'J.T.', role: 'CBT & CAT client',
+          },
+          {
+            quote: "As someone from a different cultural background, I was worried about being misunderstood. Dr. Itzia's inclusive, culturally sensitive approach made all the difference.",
+            name: 'M.R.', role: 'Trauma therapy client',
+          },
+        ].map(({ quote, name, role }) => (
+          <div class="p-7 rounded-2xl" style="background: #FAF8F4; border: 1px solid rgba(29,78,95,0.08);">
+            <div class="flex gap-0.5 mb-4">
+              {[1,2,3,4,5].map(i => (
+                <svg width="13" height="13" viewBox="0 0 14 14" fill="#F59E0B">
+                  <path d="M7 1l1.8 3.6L13 5.3l-3 2.9.7 4.1L7 10.5l-3.7 1.8.7-4.1-3-2.9 4.2-.7z"/>
+                </svg>
+              ))}
+            </div>
+            <p class="font-display text-base leading-relaxed italic mb-5" style="color: #44403C;">
+              "{quote}"
+            </p>
+            <div>
+              <p class="text-sm font-medium text-warm">{name}</p>
+              <p class="text-xs" style="color: #78716C;">{role}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <!-- Final CTA -->
+  <div class="py-24" style="background: #FAF8F4;">
+    <div class="section-container text-center">
+      <div class="max-w-2xl mx-auto">
+        <p class="font-display text-display-md text-warm mb-4">
+          Ready to begin?
+        </p>
+        <p class="leading-relaxed mb-10" style="color: #44403C;">
+          Start with a free 15-minute consultation — no commitment, no referral needed.
+          Let's find out how I can help.
+        </p>
+        <div class="flex flex-wrap items-center justify-center gap-4">
+          <a
+            href="https://calendly.com/itzia-morales/30min"
+            target="_blank"
+            class="inline-flex items-center gap-3 px-10 py-5 text-white font-medium rounded-full text-sm transition-all hover:shadow-lg hover:-translate-y-0.5"
+            style="background: linear-gradient(135deg, #1D4E5F, #2a6b82);"
+          >
+            Book Free Consultation
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <a
+            href="/booking"
+            class="inline-flex items-center gap-3 px-10 py-5 font-medium rounded-full text-sm transition-all bg-white"
+            style="border: 1.5px solid rgba(29,78,95,0.2); color: #1D4E5F;"
+          >
+            Book a Session
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <Footer slot="footer" />
+</BaseLayout>

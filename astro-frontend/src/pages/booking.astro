@@ -1,0 +1,13 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import BookingCalendar from '../components/BookingCalendar.tsx';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout
+  title="Book a Session — Dr. Itzia Perez"
+  description="Book your psychology or psychiatry appointment online. Choose a service, select a time, and pay securely. Confirmation sent instantly."
+>
+  <BookingCalendar client:load />
+  <Footer slot="footer" />
+</BaseLayout>

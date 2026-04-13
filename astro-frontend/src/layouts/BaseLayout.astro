@@ -1,0 +1,263 @@
+---
+import '../styles/global.css';
+
+export interface Props {
+  title?: string;
+  description?: string;
+}
+const {
+  title = 'Dr. Itzia Perez Morales — Clinical Psychologist',
+  description = 'Highly Specialist Clinical Psychologist. Trauma, anxiety and complex presentations. CBT, EMDR, CAT. HCPC registered.',
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap"
+      rel="stylesheet"
+    />
+    <title>{title}</title>
+  </head>
+
+  <body class="font-body antialiased" style="background:#FAF8F4; color:#1C1917;">
+
+    <!-- ── NAV ── -->
+    <nav
+      class="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+      style="background: rgba(255,255,255,0.92); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(29,78,95,0.1);"
+      id="main-nav"
+    >
+      <div class="section-container">
+        <div class="flex items-center justify-between h-16 lg:h-18">
+
+          <!-- Logo -->
+          <a href="/" class="flex items-center gap-3 group">
+            <div
+              class="w-9 h-9 rounded-full flex items-center justify-center text-white text-sm font-display font-medium"
+              style="background: linear-gradient(135deg, #1D4E5F, #2a6b82);"
+            >
+              IP
+            </div>
+            <div>
+              <p class="font-display text-base font-medium leading-tight" style="color:#1C1917;">
+                Dr. Itzia Perez
+              </p>
+              <p class="text-xs leading-tight" style="color:#78716C;">Clinical Psychologist</p>
+            </div>
+          </a>
+
+          <!-- Desktop links -->
+          <div class="hidden md:flex items-center gap-8">
+            {[
+              ['Services', '/#services'],
+              ['About', '/#about'],
+              ['My Approach', '/#approach'],
+              ['FAQ', '/#faq'],
+            ].map(([label, href]) => (
+              <a
+                href={href}
+                class="text-sm font-medium transition-colors duration-200"
+                style="color: #44403C;"
+                onmouseover="this.style.color='#1D4E5F'"
+                onmouseout="this.style.color='#44403C'"
+              >
+                {label}
+              </a>
+            ))}
+          </div>
+
+          <!-- CTAs -->
+          <div class="hidden md:flex items-center gap-3">
+            <a
+              href="https://calendly.com/itzia-morales/30min"
+              target="_blank"
+              class="text-sm font-medium px-4 py-2 rounded-full transition-all duration-200"
+              style="color: #1D4E5F; border: 1.5px solid rgba(29,78,95,0.25);"
+              onmouseover="this.style.background='rgba(29,78,95,0.05)'"
+              onmouseout="this.style.background='transparent'"
+            >
+              Free Consultation
+            </a>
+            <a
+              href="/booking"
+              class="text-sm font-medium px-5 py-2.5 rounded-full text-white transition-all duration-200 hover:shadow-md hover:-translate-y-px"
+              style="background: linear-gradient(135deg, #1D4E5F, #2a6b82);"
+            >
+              Book a Session
+            </a>
+          </div>
+
+          <!-- Mobile button -->
+          <button id="menu-btn" class="md:hidden p-2 rounded-lg" style="color:#44403C;">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+              <path d="M3 6h16M3 11h16M3 16h16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile menu -->
+      <div id="mobile-menu" class="hidden md:hidden border-t" style="background:white; border-color:rgba(29,78,95,0.08);">
+        <div class="section-container py-5 flex flex-col gap-4">
+          <a href="/#services" class="text-sm font-medium py-1" style="color:#44403C;">Services</a>
+          <a href="/#about"    class="text-sm font-medium py-1" style="color:#44403C;">About</a>
+          <a href="/#approach" class="text-sm font-medium py-1" style="color:#44403C;">My Approach</a>
+          <a href="/#faq"      class="text-sm font-medium py-1" style="color:#44403C;">FAQ</a>
+          <div class="flex flex-col gap-3 pt-2 border-t" style="border-color:rgba(29,78,95,0.08);">
+            <a
+              href="https://calendly.com/itzia-morales/30min"
+              target="_blank"
+              class="text-center py-3 text-sm font-medium rounded-full"
+              style="color:#1D4E5F; border: 1.5px solid rgba(29,78,95,0.2);"
+            >
+              Free Consultation
+            </a>
+            <a
+              href="/booking"
+              class="text-center py-3 text-sm font-medium rounded-full text-white"
+              style="background: linear-gradient(135deg, #1D4E5F, #2a6b82);"
+            >
+              Book a Session
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <main>
+      <slot />
+    </main>
+
+    <slot name="footer" />
+
+    <!-- ── FOOTER ── -->
+    <footer style="background: #0f2d38; color: rgba(255,255,255,0.7);">
+      <div class="section-container py-16">
+        <div class="grid md:grid-cols-4 gap-10 mb-12">
+
+          <!-- Brand -->
+          <div class="md:col-span-2">
+            <div class="flex items-center gap-3 mb-5">
+              <div
+                class="w-9 h-9 rounded-full flex items-center justify-center text-white text-sm font-display font-medium"
+                style="background: rgba(255,255,255,0.15);"
+              >
+                IP
+              </div>
+              <div>
+                <p class="font-display text-base font-medium text-white">Dr. Itzia Perez Morales</p>
+                <p class="text-xs" style="color:rgba(255,255,255,0.45);">Highly Specialist Clinical Psychologist</p>
+              </div>
+            </div>
+            <p class="text-sm leading-relaxed mb-6" style="color:rgba(255,255,255,0.5); max-width:300px;">
+              HCPC registered and BPS chartered. Trauma-focused therapy
+              online — CBT, EMDR, and CAT for complex presentations.
+            </p>
+            <!-- Credential badges -->
+            <div class="flex flex-wrap gap-2">
+              {['HCPC Registered', 'BPS Chartered', 'EMDR UK'].map(c => (
+                <span
+                  class="text-xs px-3 py-1.5 rounded-full font-medium"
+                  style="background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.12); color:rgba(255,255,255,0.7);"
+                >
+                  {c}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          <!-- Services -->
+          <div>
+            <h4 class="text-xs font-semibold uppercase tracking-widest mb-5 text-white">Services</h4>
+            <ul class="space-y-3">
+              {[
+                ['Initial Assessment', '/booking?service=initial-assessment'],
+                ['Psychological Therapy', '/booking?service=psychological-intervention'],
+                ['EMDR Therapy', '/booking?service=emdr-standard'],
+                ['Free Consultation', 'https://calendly.com/itzia-morales/30min'],
+              ].map(([label, href]) => (
+                <li>
+                  <a
+                    href={href}
+                    class="text-sm transition-colors duration-200"
+                    style="color:rgba(255,255,255,0.5);"
+                    onmouseover="this.style.color='rgba(255,255,255,0.9)'"
+                    onmouseout="this.style.color='rgba(255,255,255,0.5)'"
+                  >
+                    {label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <!-- Info -->
+          <div>
+            <h4 class="text-xs font-semibold uppercase tracking-widest mb-5 text-white">Information</h4>
+            <ul class="space-y-3">
+              {[
+                ['About', '/#about'],
+                ['My Approach', '/#approach'],
+                ['Who I Help', '/#services'],
+                ['FAQ', '/#faq'],
+                ['Privacy Policy', '/privacy'],
+              ].map(([label, href]) => (
+                <li>
+                  <a
+                    href={href}
+                    class="text-sm transition-colors duration-200"
+                    style="color:rgba(255,255,255,0.5);"
+                    onmouseover="this.style.color='rgba(255,255,255,0.9)'"
+                    onmouseout="this.style.color='rgba(255,255,255,0.5)'"
+                  >
+                    {label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        <!-- Bottom bar -->
+        <div
+          class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4"
+          style="border-top: 1px solid rgba(255,255,255,0.08);"
+        >
+          <p class="text-xs" style="color:rgba(255,255,255,0.3);">
+            © {new Date().getFullYear()} Dr. Itzia Perez Morales. All rights reserved.
+          </p>
+          <div class="flex items-center gap-2 text-xs" style="color:rgba(255,255,255,0.3);">
+            <span>Payments secured by</span>
+            <span class="font-semibold" style="color:rgba(255,255,255,0.5);">Stripe</span>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Mobile menu
+      document.getElementById('menu-btn')?.addEventListener('click', () => {
+        document.getElementById('mobile-menu')?.classList.toggle('hidden');
+      });
+
+      // Nav scroll shadow
+      window.addEventListener('scroll', () => {
+        const nav = document.getElementById('main-nav');
+        if (nav) {
+          if (window.scrollY > 20) {
+            nav.style.boxShadow = '0 4px 24px rgba(29,78,95,0.08)';
+          } else {
+            nav.style.boxShadow = 'none';
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
