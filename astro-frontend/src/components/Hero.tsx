@@ -193,22 +193,6 @@ export default function Hero() {
                   }}
                 />
 
-                {/* Hover hint */}
-                <div
-                  className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                  style={{ background: 'rgba(15,45,56,0.25)' }}
-                >
-                  <span
-                    className="flex items-center gap-2 text-sm font-medium text-white px-4 py-2 rounded-full"
-                    style={{ background: 'rgba(255,255,255,0.15)', border: '1px solid rgba(255,255,255,0.3)', backdropFilter: 'blur(10px)' }}
-                  >
-                    About Dr. Itzia
-                    <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
-                      <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                  </span>
-                </div>
-
                 {/* Overlay TOP — Free consultation */}
                 <motion.div
                   initial={{ opacity: 0, y: -10 }}
