@@ -52,7 +52,7 @@ const faqs = [
   {
     question: 'What are your fees?',
     answer:
-      'The initial assessment is \u00A3140 per hour for self-funded clients and \u00A3120 for insured clients. Standard therapy sessions (50 minutes) are \u00A3120. Extended EMDR sessions are available at \u00A3180 for 90 minutes and \u00A3240 for 2 hours. I also offer session bundles for self-funded clients after the initial assessment. Visit the Fees page for full details.',
+      'The initial assessment is \u00A3140 per hour for self-funded clients and \u00A3120 for insured clients. Standard therapy sessions (50 minutes) are \u00A3120. Extended EMDR sessions are available at \u00A3180 for 90 minutes and \u00A3240 for 2 hours. I also offer session packages for self-funded clients after the initial assessment. Visit the Fees page for full details.',
   },
 ];
 

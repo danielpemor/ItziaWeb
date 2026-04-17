@@ -15,7 +15,7 @@ export default function Hero() {
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden pt-20">
 
-      {/* Background — limpio, sin grid */}
+      {/* Background */}
       <div className="absolute inset-0 pointer-events-none">
         <div
           className="absolute inset-0"
@@ -118,7 +118,7 @@ export default function Hero() {
               </Magnet>
             </motion.div>
 
-            {/* Social proof — minimalista */}
+            {/* Social proof */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -153,52 +153,63 @@ export default function Hero() {
             </motion.div>
           </div>
 
-          {/* ── RIGHT — imagen con overlays internos ── */}
+          {/* ── RIGHT — imagen como link a /about ── */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.9, delay: 0.3 }}
             className="relative hidden lg:block"
           >
-            {/*
-              Contenedor principal — aspect ratio fijo
-              Las tarjetas van DENTRO como absolute overlays
-              No hay tarjetas externas que compitan con el layout
-            */}
             <div className="relative mx-auto" style={{ maxWidth: '400px' }}>
 
-              {/* Imagen */}
-              <div
-                className="relative w-full overflow-hidden"
+              {/* Imagen envuelta en link */}
+              <a
+                href="/about"
+                className="block relative w-full overflow-hidden group"
                 style={{ aspectRatio: '3/4', borderRadius: '2rem' }}
+                aria-label="Learn more about Dr. Itzia Perez Morales"
               >
                 <img
                   src="/images/dr-itzia.jpg"
                   alt="Dr. Itzia Perez Morales"
-                  className="w-full h-full object-cover object-top"
+                  className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.03]"
                   onError={(e) => {
                     e.currentTarget.style.display = 'none';
-                    e.currentTarget.parentElement!.style.background =
+                    (e.currentTarget.parentElement as HTMLElement).style.background =
                       'linear-gradient(160deg, #2a6b82 0%, #1D4E5F 60%, #0f2d38 100%)';
                   }}
                 />
 
-                {/* Gradient overlay — más fuerte en el borde superior e inferior */}
+                {/* Gradient overlay */}
                 <div
                   className="absolute inset-0"
                   style={{
-                    background: `
-                      linear-gradient(to bottom,
-                        rgba(15,45,56,0.55) 0%,
-                        transparent 35%,
-                        transparent 55%,
-                        rgba(15,45,56,0.85) 100%
-                      )
-                    `,
+                    background: `linear-gradient(to bottom,
+                      rgba(15,45,56,0.55) 0%,
+                      transparent 35%,
+                      transparent 55%,
+                      rgba(15,45,56,0.85) 100%
+                    )`,
                   }}
                 />
 
-                {/* ── Overlay TOP — Free consultation ── */}
+                {/* Hover hint */}
+                <div
+                  className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  style={{ background: 'rgba(15,45,56,0.25)' }}
+                >
+                  <span
+                    className="flex items-center gap-2 text-sm font-medium text-white px-4 py-2 rounded-full"
+                    style={{ background: 'rgba(255,255,255,0.15)', border: '1px solid rgba(255,255,255,0.3)', backdropFilter: 'blur(10px)' }}
+                  >
+                    About Dr. Itzia
+                    <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                      <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </span>
+                </div>
+
+                {/* Overlay TOP — Free consultation */}
                 <motion.div
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -212,6 +223,7 @@ export default function Hero() {
                     borderRadius: '1rem',
                     padding: '0.875rem 1.125rem',
                   }}
+                  onClick={e => e.preventDefault()}
                 >
                   <div className="flex items-center justify-between">
                     <div>
@@ -225,21 +237,18 @@ export default function Hero() {
                     <a
                       href="https://calendly.com/itzia-morales/30min"
                       target="_blank"
+                      rel="noopener noreferrer"
                       className="text-xs font-medium px-3 py-1.5 rounded-full transition-all"
-                      style={{
-                        background: 'rgba(255,255,255,0.2)',
-                        color: 'white',
-                        border: '1px solid rgba(255,255,255,0.3)',
-                      }}
+                      style={{ background: 'rgba(255,255,255,0.2)', color: 'white', border: '1px solid rgba(255,255,255,0.3)' }}
+                      onClick={e => e.stopPropagation()}
                     >
                       Book free →
                     </a>
                   </div>
                 </motion.div>
 
-                {/* ── Overlay BOTTOM — nombre + stat ── */}
+                {/* Overlay BOTTOM — nombre + stat */}
                 <div className="absolute bottom-0 left-0 right-0 p-5">
-                  {/* Stat pill */}
                   <motion.div
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -256,8 +265,6 @@ export default function Hero() {
                       <CountUp to={10} duration={2} suffix="+ years" /> NHS & Private · 4 countries
                     </span>
                   </motion.div>
-
-                  {/* Nombre */}
                   <p className="font-display text-xl text-white font-medium leading-tight mb-0.5">
                     Dr. Itzia Perez Morales
                   </p>
@@ -265,9 +272,9 @@ export default function Hero() {
                     Highly Specialist Clinical Psychologist
                   </p>
                 </div>
-              </div>
+              </a>
 
-              {/* Decorative ring — sutil */}
+              {/* Decorative ring */}
               <div
                 className="absolute -inset-3 -z-10 rounded-[2.5rem] pointer-events-none"
                 style={{ border: '1px solid rgba(29,78,95,0.1)' }}
@@ -278,7 +285,7 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Scroll */}
+      {/* Scroll indicator */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

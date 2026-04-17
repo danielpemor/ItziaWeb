@@ -3,7 +3,6 @@ import { motion } from 'framer-motion';
 const insurers = [
   { name: 'AXA Health', src: '/images/insurers/axa.svg' },
   { name: 'Aviva',      src: '/images/insurers/aviva.svg' },
-  { name: 'Bupa',       src: '/images/insurers/bupa.svg' },
   { name: 'Cigna',      src: '/images/insurers/cigna.svg' },
   { name: 'Vitality',   src: '/images/insurers/vitality.svg' },
   { name: 'Healix',     src: '/images/insurers/healix.svg' },

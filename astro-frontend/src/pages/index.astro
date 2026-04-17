@@ -2,11 +2,9 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.tsx';
 import { ServicesSection } from '../components/ServiceCard.tsx';
-import AboutSection from '../components/AboutSection.tsx';
 import ApproachSection from '../components/ApproachSection.tsx';
 import FAQSection from '../components/FAQSection.tsx';
 import LogoStrip from '../components/LogoStrip.tsx';
-import Footer from '../components/Footer.astro';
 ---
 
 <BaseLayout
@@ -17,7 +15,7 @@ import Footer from '../components/Footer.astro';
   <LogoStrip client:load />
   <ServicesSection client:load />
 
-  <!-- Pricing preview — solo lo esencial -->
+  <!-- Pricing preview -->
   <div class="py-20 border-y" style="background:#ffffff; border-color:rgba(29,78,95,0.07);">
     <div class="section-container">
       
@@ -43,7 +41,7 @@ import Footer from '../components/Footer.astro';
             class="font-medium underline underline-offset-2 self-start transition-colors"
             style="color:#1D4E5F;"
           >
-            View full pricing & bundles →
+            View full pricing & packages →
           </a>
         </div>
       </div>
@@ -176,7 +174,7 @@ import Footer from '../components/Footer.astro';
             </svg>
           </div>
           <div>
-            <p class="text-sm font-medium text-warm">Session bundles available</p>
+            <p class="text-sm font-medium text-warm">Session packages available</p>
             <p class="text-xs" style="color:#78716C;">
               Save with monthly plans, CBT, CAT or EMDR packages from £450
             </p>
@@ -187,21 +185,20 @@ import Footer from '../components/Footer.astro';
           class="flex-shrink-0 text-sm font-medium px-5 py-2.5 rounded-full transition-all whitespace-nowrap"
           style="color:#1D4E5F; border:1.5px solid rgba(29,78,95,0.2); background:white;"
         >
-          View all bundles →
+          View all packages →
         </a>
       </div>
 
     </div>
   </div>
 
-  <AboutSection client:load />
   <ApproachSection client:load />
   <FAQSection client:load />
 
   <!-- Testimonials -->
   <div class="py-20 border-y" style="background: #ffffff; border-color: rgba(29,78,95,0.08);">
     <div class="section-container">
-      <div class="grid md:grid-cols-3 gap-6">
+      <div class="grid md:grid-cols-3 gap-6 mb-10">
         {[
           {
             quote: "Dr. Itzia helped me understand patterns I'd carried for years. The EMDR sessions were transformative — I finally feel free from memories that once paralysed me.",
@@ -234,6 +231,21 @@ import Footer from '../components/Footer.astro';
           </div>
         ))}
       </div>
+
+      <!-- Link to about after testimonials -->
+      <div class="flex justify-center">
+        <a
+          href="/about"
+          class="inline-flex items-center gap-2.5 text-sm font-medium px-6 py-3 rounded-full transition-all bg-white hover:shadow-sm hover:-translate-y-px"
+          style="color:#1D4E5F; border:1.5px solid rgba(29,78,95,0.2);"
+        >
+          Learn about my approach
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+
     </div>
   </div>
 
@@ -272,5 +284,4 @@ import Footer from '../components/Footer.astro';
     </div>
   </div>
 
-  <Footer slot="footer" />
 </BaseLayout>

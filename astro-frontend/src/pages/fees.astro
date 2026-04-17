@@ -1,11 +1,10 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Footer from '../components/Footer.astro';
 ---
 
 <BaseLayout
   title="Fees & Pricing — Dr. Itzia Perez Morales"
-  description="Transparent pricing for psychological therapy, EMDR, and assessment. Self-funded and insurance rates. Session bundles available."
+  description="Transparent pricing for psychological therapy, EMDR, and assessment. Self-funded rates. Session packages available."
 >
   <div class="pt-28 pb-20" style="background:#FAF8F4;">
     <div class="section-container">
@@ -35,128 +34,62 @@ import Footer from '../components/Footer.astro';
         </h1>
         <p class="leading-relaxed" style="color:#44403C;">
           All fees are agreed at the time of initial enquiry. 
-          Session bundles are available after your initial assessment, 
+          Session packages are available after your initial assessment, 
           based on your treatment plan.
         </p>
       </div>
 
-      <!-- Tab switcher — Self-funded vs Insured -->
-      <div id="fee-tabs" class="mb-12">
-        <div
-          class="inline-flex p-1 rounded-xl mb-10"
-          style="background:rgba(29,78,95,0.06); border:1px solid rgba(29,78,95,0.1);"
-        >
-          <button
-            id="tab-self"
-            onclick="switchTab('self')"
-            class="px-6 py-2.5 rounded-lg text-sm font-medium transition-all"
-            style="background:white; color:#1D4E5F; box-shadow:0 1px 4px rgba(29,78,95,0.1);"
-          >
-            Self-Funded
-          </button>
-          <button
-            id="tab-insured"
-            onclick="switchTab('insured')"
-            class="px-6 py-2.5 rounded-lg text-sm font-medium transition-all"
-            style="color:#78716C;"
-          >
-            Insured
-          </button>
-        </div>
-
-        <!-- Self-funded table -->
-        <div id="panel-self">
-          <div class="overflow-hidden rounded-2xl border" style="border-color:rgba(29,78,95,0.1);">
-            <table class="w-full">
-              <thead>
-                <tr style="background:rgba(29,78,95,0.05);">
-                  <th class="text-left px-6 py-4 text-xs font-semibold uppercase tracking-widest" style="color:#1D4E5F;">Service</th>
-                  <th class="text-right px-6 py-4 text-xs font-semibold uppercase tracking-widest" style="color:#1D4E5F;">Fee</th>
+      <!-- Fee table -->
+      <div class="mb-12">
+        <div class="overflow-hidden rounded-2xl border" style="border-color:rgba(29,78,95,0.1);">
+          <table class="w-full">
+            <thead>
+              <tr style="background:rgba(29,78,95,0.05);">
+                <th class="text-left px-6 py-4 text-xs font-semibold uppercase tracking-widest" style="color:#1D4E5F;">Service</th>
+                <th class="text-right px-6 py-4 text-xs font-semibold uppercase tracking-widest" style="color:#1D4E5F;">Fee</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y" style="divide-color:rgba(29,78,95,0.06);">
+              {[
+                { service: 'Initial Consultation', detail: '15 minutes', fee: 'Free', highlight: true },
+                { service: 'Initial Assessment', detail: 'Hourly rate', fee: '£140' },
+                { service: 'Psychological Intervention', detail: '50 minutes', fee: '£120' },
+                { service: 'EMDR Extended Session', detail: '90 minutes', fee: '£180' },
+                { service: 'EMDR Extended Session', detail: '2 hours', fee: '£240' },
+                { service: 'Follow-Up Session', detail: '30 minutes', fee: '£60' },
+                { service: 'Medico-Legal Report', detail: 'Hourly rate', fee: '£150' },
+                { service: 'Mentoring', detail: 'Per session', fee: '£60' },
+              ].map(({ service, detail, fee, highlight }) => (
+                <tr
+                  class="transition-colors"
+                  style={`background:${highlight ? 'rgba(29,78,95,0.03)' : 'white'};`}
+                >
+                  <td class="px-6 py-4">
+                    <p class="text-sm font-medium text-warm">{service}</p>
+                    <p class="text-xs mt-0.5" style="color:#78716C;">{detail}</p>
+                  </td>
+                  <td class="px-6 py-4 text-right">
+                    <span
+                      class="font-display text-xl font-medium"
+                      style={`color:${highlight ? '#1D4E5F' : '#1C1917'};`}
+                    >
+                      {fee}
+                    </span>
+                  </td>
                 </tr>
-              </thead>
-              <tbody class="divide-y" style="divide-color:rgba(29,78,95,0.06);">
-                {[
-                  { service: 'Initial Consultation', detail: '15 minutes', fee: 'Free' , highlight: true },
-                  { service: 'Initial Assessment', detail: 'Hourly rate', fee: '£140' },
-                  { service: 'Psychological Intervention', detail: '50 minutes', fee: '£120' },
-                  { service: 'EMDR Extended Session', detail: '90 minutes', fee: '£180' },
-                  { service: 'EMDR Extended Session', detail: '2 hours', fee: '£240' },
-                  { service: 'Follow-Up Session', detail: '30 minutes', fee: '£60' },
-                  { service: 'Medico-Legal Report', detail: 'Hourly rate', fee: '£150' },
-                  { service: 'Mentoring', detail: 'Per session', fee: '£60' },
-                ].map(({ service, detail, fee, highlight }) => (
-                  <tr
-                    class="transition-colors"
-                    style={`background:${highlight ? 'rgba(29,78,95,0.03)' : 'white'};`}
-                  >
-                    <td class="px-6 py-4">
-                      <p class="text-sm font-medium text-warm">{service}</p>
-                      <p class="text-xs mt-0.5" style="color:#78716C;">{detail}</p>
-                    </td>
-                    <td class="px-6 py-4 text-right">
-                      <span
-                        class="font-display text-xl font-medium"
-                        style={`color:${highlight ? '#1D4E5F' : '#1C1917'};`}
-                      >
-                        {fee}
-                      </span>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-        <!-- Insured table -->
-        <div id="panel-insured" class="hidden">
-          <div class="overflow-hidden rounded-2xl border" style="border-color:rgba(29,78,95,0.1);">
-            <div class="px-6 py-4 flex items-center gap-3" style="background:rgba(29,78,95,0.04); border-bottom:1px solid rgba(29,78,95,0.08);">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1D4E5F" stroke-width="1.5" stroke-linecap="round">
-                <circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/>
-              </svg>
-              <p class="text-xs" style="color:#44403C;">
-                Registered with <strong>AXA, Aviva, Cigna, Healix,</strong> and <strong>Vitality</strong>. Please confirm coverage with your insurer before booking.
-              </p>
-            </div>
-            <table class="w-full">
-              <thead>
-                <tr style="background:rgba(29,78,95,0.05);">
-                  <th class="text-left px-6 py-4 text-xs font-semibold uppercase tracking-widest" style="color:#1D4E5F;">Service</th>
-                  <th class="text-right px-6 py-4 text-xs font-semibold uppercase tracking-widest" style="color:#1D4E5F;">Fee</th>
-                </tr>
-              </thead>
-              <tbody class="divide-y" style="divide-color:rgba(29,78,95,0.06);">
-                {[
-                  { service: 'Initial Consultation', detail: '15 minutes', fee: 'Free' },
-                  { service: 'Initial Assessment', detail: 'Hourly rate', fee: '£120' },
-                  { service: 'Psychological Intervention', detail: '50 minutes', fee: '£120' },
-                  { service: 'EMDR Extended Session', detail: '2 hours only', fee: '£240' },
-                  { service: 'Medico-Legal Report', detail: 'Hourly rate', fee: '£150' },
-                ].map(({ service, detail, fee }) => (
-                  <tr class="transition-colors" style="background:white;">
-                    <td class="px-6 py-4">
-                      <p class="text-sm font-medium text-warm">{service}</p>
-                      <p class="text-xs mt-0.5" style="color:#78716C;">{detail}</p>
-                    </td>
-                    <td class="px-6 py-4 text-right">
-                      <span class="font-display text-xl font-medium text-warm">{fee}</span>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+              ))}
+            </tbody>
+          </table>
         </div>
       </div>
 
-      <!-- Bundles — solo self-funded -->
+      <!-- Bundles -->
       <div id="bundles-section">
         <div class="flex items-end justify-between gap-4 mb-8">
           <div>
-            <h2 class="font-display text-display-sm text-warm mb-2">Session Bundles</h2>
+            <h2 class="font-display text-display-sm text-warm mb-2">Session packages</h2>
             <p class="text-sm" style="color:#78716C;">
-              Available to self-funded patients after initial assessment. Bundle type agreed based on treatment plan.
+              Available after initial assessment. Package type agreed based on treatment plan.
             </p>
           </div>
         </div>
@@ -168,84 +101,104 @@ import Footer from '../components/Footer.astro';
               desc: 'Flexible monthly plan',
               detail: '4 standard sessions',
               price: '£450',
+              per: '£112.50/session',
               saving: 'Save £30',
               color: 'teal',
+              href: 'STRIPE_LINK_MONTHLY',
             },
             {
               name: 'Integrative Plan',
-              desc: 'Full treatment package',
+              desc: 'Assessment + therapy',
               detail: 'Assessment + 10 sessions',
               price: '£1,200',
+              per: '~£109/session',
               saving: 'Save £140',
               color: 'teal',
+              href: 'STRIPE_LINK_INTEGRATIVE',
             },
             {
               name: 'CBT Start',
               desc: 'Short-term CBT course',
               detail: '6 sessions',
               price: '£700',
+              per: '£116.67/session',
               saving: 'Save £20',
               color: 'teal',
+              href: 'STRIPE_LINK_CBT_START',
             },
             {
               name: 'CBT Full',
               desc: 'Complete CBT programme',
               detail: '12 sessions',
               price: '£1,380',
+              per: '£115/session',
               saving: 'Save £60',
               color: 'teal',
+              href: 'STRIPE_LINK_CBT_FULL',
             },
             {
               name: 'CAT Start',
               desc: 'Short-term CAT course',
               detail: '8 sessions',
               price: '£940',
+              per: '£117.50/session',
               saving: 'Save £20',
               color: 'teal',
+              href: 'STRIPE_LINK_CAT_START',
             },
             {
               name: 'CAT Full',
               desc: 'Complete CAT programme',
               detail: '16 sessions',
               price: '£1,850',
+              per: '£115.63/session',
               saving: 'Save £70',
               color: 'teal',
+              href: 'STRIPE_LINK_CAT_FULL',
             },
             {
-              name: 'EMDR+ Monthly',
-              desc: '90-min sessions',
-              detail: '4 sessions of 90 minutes',
+              name: 'EMDR+ Monthly 90min',
+              desc: 'Weekly extended sessions',
+              detail: '4 × 90-minute sessions',
               price: '£700',
+              per: '£175/session',
               saving: 'Save £20',
               color: 'terra',
+              href: 'STRIPE_LINK_EMDR_M90',
             },
             {
-              name: 'EMDR+ Monthly',
-              desc: '2-hour sessions',
-              detail: '4 sessions of 2 hours',
+              name: 'EMDR+ Monthly 2hr',
+              desc: 'Weekly intensive sessions',
+              detail: '4 × 2-hour sessions',
               price: '£900',
+              per: '£225/session',
               saving: 'Save £60',
               color: 'terra',
+              href: 'STRIPE_LINK_EMDR_M2H',
             },
             {
-              name: 'EMDR+ Intensive',
-              desc: '90-min intensive',
-              detail: '8 sessions of 90 minutes',
+              name: 'EMDR+ Intensive 90min',
+              desc: 'Intensive programme',
+              detail: '8 × 90-minute sessions',
               price: '£1,400',
+              per: '£175/session',
               saving: 'Save £40',
               color: 'terra',
+              href: 'STRIPE_LINK_EMDR_I90',
             },
             {
-              name: 'EMDR+ Intensive',
-              desc: '2-hour intensive',
-              detail: '8 sessions of 2 hours',
+              name: 'EMDR+ Intensive 2hr',
+              desc: 'Full intensive programme',
+              detail: '8 × 2-hour sessions',
               price: '£1,800',
+              per: '£225/session',
               saving: 'Save £120',
               color: 'terra',
+              href: 'STRIPE_LINK_EMDR_I2H',
             },
-          ].map(({ name, desc, detail, price, saving, color }) => (
+          ].map(({ name, desc, detail, price, per, saving, color, href }) => (
             <div
-              class="p-6 rounded-2xl transition-all hover:shadow-md"
+              class="p-6 rounded-2xl transition-all hover:shadow-md flex flex-col"
               style={`background:white; border:1px solid ${color === 'terra' ? 'rgba(193,125,92,0.12)' : 'rgba(29,78,95,0.08)'};`}
             >
               <div class="flex items-start justify-between mb-4">
@@ -259,14 +212,23 @@ import Footer from '../components/Footer.astro';
               <p class="font-display text-xl text-warm font-medium mb-0.5">{name}</p>
               <p class="text-xs mb-1" style="color:#78716C;">{desc}</p>
               <p class="text-xs mb-4" style="color:#44403C;">{detail}</p>
-              <div class="flex items-end justify-between">
-                <span class="font-display text-2xl font-medium text-warm">{price}</span>
+
+              <div class="mt-auto">
+                <div class="flex items-end justify-between mb-3">
+                  <span class="font-display text-2xl font-medium text-warm">{price}</span>
+                  <span class="text-[11px]" style="color:#78716C;">{per}</span>
+                </div>
                 <a
-                  href="/booking"
-                  class="text-xs font-medium px-4 py-2 rounded-full transition-all"
-                  style={`background:${color === 'terra' ? 'rgba(193,125,92,0.08)' : 'rgba(29,78,95,0.07)'}; color:${color === 'terra' ? '#C17D5C' : '#1D4E5F'}; border:1px solid ${color === 'terra' ? 'rgba(193,125,92,0.2)' : 'rgba(29,78,95,0.15)'};`}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="w-full inline-flex items-center justify-center gap-2 text-xs font-medium px-4 py-2.5 rounded-full transition-all hover:-translate-y-0.5"
+                  style={`background:${color === 'terra' ? 'linear-gradient(135deg,#C17D5C,#d4936f)' : 'linear-gradient(135deg,#1D4E5F,#2a6b82)'}; color:white;`}
                 >
-                  Enquire →
+                  Purchase Bundle
+                  <svg width="12" height="12" viewBox="0 0 16 16" fill="none">
+                    <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
                 </a>
               </div>
             </div>
@@ -282,9 +244,9 @@ import Footer from '../components/Footer.astro';
             <circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/>
           </svg>
           <div>
-            <p class="text-sm font-medium text-warm mb-1">About bundles</p>
+            <p class="text-sm font-medium text-warm mb-1">About packages</p>
             <p class="text-sm" style="color:#44403C;">
-              Bundles are only available after your initial assessment, 
+              Packages are only available after your initial assessment, 
               based on the treatment plan discussed. Payment can be made 
               by bank transfer or card. Late cancellations within 48 hours 
               are charged at the full session rate if they cannot be rescheduled 
@@ -327,48 +289,4 @@ import Footer from '../components/Footer.astro';
     </div>
   </div>
 
-  <Footer slot="footer" />
 </BaseLayout>
-
-<script>
-  function switchTab(tab: string) {
-    const selfPanel = document.getElementById('panel-self');
-    const insuredPanel = document.getElementById('panel-insured');
-    const bundlesSection = document.getElementById('bundles-section');
-    const tabSelf = document.getElementById('tab-self');
-    const tabInsured = document.getElementById('tab-insured');
-
-    if (tab === 'self') {
-      selfPanel?.classList.remove('hidden');
-      insuredPanel?.classList.add('hidden');
-      bundlesSection?.classList.remove('hidden');
-      if (tabSelf) {
-        tabSelf.style.background = 'white';
-        tabSelf.style.color = '#1D4E5F';
-        tabSelf.style.boxShadow = '0 1px 4px rgba(29,78,95,0.1)';
-      }
-      if (tabInsured) {
-        tabInsured.style.background = 'transparent';
-        tabInsured.style.color = '#78716C';
-        tabInsured.style.boxShadow = 'none';
-      }
-    } else {
-      selfPanel?.classList.add('hidden');
-      insuredPanel?.classList.remove('hidden');
-      bundlesSection?.classList.add('hidden');
-      if (tabInsured) {
-        tabInsured.style.background = 'white';
-        tabInsured.style.color = '#1D4E5F';
-        tabInsured.style.boxShadow = '0 1px 4px rgba(29,78,95,0.1)';
-      }
-      if (tabSelf) {
-        tabSelf.style.background = 'transparent';
-        tabSelf.style.color = '#78716C';
-        tabSelf.style.boxShadow = 'none';
-      }
-    }
-  }
-
-  // Expose to window for onclick handlers
-  (window as any).switchTab = switchTab;
-</script>

@@ -1,0 +1,663 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="About Dr. Itzia Perez Morales — Highly Specialist Clinical Psychologist"
+  description="Learn about Dr. Itzia Perez Morales, Highly Specialist Clinical Psychologist. HCPC registered, BPS chartered, with 10+ years across NHS and private practice in the UK, Ireland, Mexico, and Palestine."
+>
+
+  <!-- ══════════════════════════════════════════
+       HERO
+  ══════════════════════════════════════════ -->
+  <section class="pt-28 pb-16 relative overflow-hidden" style="background:#FAF8F4;">
+    <div
+      class="absolute inset-0 pointer-events-none"
+      style="background:radial-gradient(ellipse 70% 60% at 70% 50%, rgba(29,78,95,0.06) 0%, transparent 70%);"
+    />
+    <div class="section-container relative">
+      <div class="max-w-3xl">
+        <div
+          class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium uppercase tracking-widest mb-6"
+          style="background:rgba(29,78,95,0.07); color:#1D4E5F; border:1px solid rgba(29,78,95,0.1);"
+        >
+          About
+        </div>
+        <h1 class="font-display text-display-lg text-warm leading-tight mb-6">
+          Specialist care<br/>
+          <em class="not-italic" style="background:linear-gradient(135deg,#1D4E5F,#7A9E7E); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">
+            rooted in evidence.
+          </em>
+        </h1>
+        <p class="text-lg leading-relaxed" style="color:#44403C; max-width:560px;">
+          A Highly Specialist Clinical Psychologist with over 10 years of experience across NHS and private settings, working internationally with people facing trauma, anxiety, and complex presentations.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       BIO + PHOTO
+  ══════════════════════════════════════════ -->
+  <section class="py-20 border-y" style="background:#ffffff; border-color:rgba(29,78,95,0.07);">
+    <div class="section-container">
+      <div class="grid lg:grid-cols-2 gap-16 items-start">
+
+        <!-- Photo + Stats + Governing Bodies -->
+        <div class="relative max-w-sm mx-auto lg:mx-0 lg:sticky lg:top-28">
+
+          <!-- Photo card -->
+          <div class="w-full rounded-3xl overflow-hidden relative" style="aspect-ratio:3/4;">
+            <div
+              class="absolute inset-0"
+              style="background:linear-gradient(160deg,#2a6b82 0%,#1D4E5F 60%,#0f2d38 100%);"
+            />
+            <img
+              src="/images/dr-itzia-about.jpg"
+              alt="Dr. Itzia Perez Morales"
+              class="absolute inset-0 w-full h-full object-cover object-center"
+              onerror="this.style.display='none'"
+            />
+            <div
+              class="absolute inset-0"
+              style="background:linear-gradient(to top,rgba(15,45,56,0.95) 0%,rgba(15,45,56,0.2) 45%,transparent 65%);"
+            />
+            <!-- Profile overlay -->
+            <div class="absolute bottom-0 left-0 right-0 p-6 z-10">
+              <p class="font-display text-xl text-white font-medium leading-tight mb-0.5">
+                Dr. Itzia Perez Morales
+              </p>
+              <p class="text-sm mb-4" style="color:rgba(255,255,255,0.55);">
+                Highly Specialist Clinical Psychologist
+              </p>
+              <div class="flex flex-wrap gap-2">
+                {['HCPC', 'BPS', 'EMDR UK'].map(label => (
+                  <span
+                    class="text-xs px-2.5 py-1 rounded-full font-medium"
+                    style="background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); color:rgba(255,255,255,0.85);"
+                  >
+                    {label}
+                  </span>
+                ))}
+              </div>
+            </div>
+            <!-- Globe badge -->
+            <div
+              class="absolute top-5 right-5 z-10 rounded-2xl px-3 py-2.5"
+              style="background:rgba(255,255,255,0.12); backdrop-filter:blur(16px); border:1px solid rgba(255,255,255,0.2);"
+            >
+              <div class="flex items-center gap-2">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.7)" stroke-width="1.8" stroke-linecap="round">
+                  <circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/>
+                  <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                </svg>
+                <span class="text-xs font-medium" style="color:rgba(255,255,255,0.85);">UK · Ireland · Mexico · Palestine</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stats -->
+          <div class="grid grid-cols-3 gap-3 mt-4">
+            {[
+              { value: '10+', label: 'Years NHS & Private' },
+              { value: '200+', label: 'Clients supported' },
+              { value: '4', label: 'Countries of practice' },
+            ].map(({ value, label }) => (
+              <div
+                class="text-center p-3 rounded-xl"
+                style="background:rgba(29,78,95,0.04); border:1px solid rgba(29,78,95,0.08);"
+              >
+                <p class="font-display text-2xl font-medium" style="color:#1C1917;">{value}</p>
+                <p class="text-xs mt-0.5 leading-tight" style="color:#78716C;">{label}</p>
+              </div>
+            ))}
+          </div>
+
+          <!-- Governing Bodies -->
+          <div class="mt-5">
+            <p class="text-xs font-semibold uppercase tracking-widest mb-3" style="color:#1D4E5F;">
+              Governing Bodies
+            </p>
+            <div class="space-y-2">
+              {[
+                { abbr: 'H', label: 'HCPC', detail: 'Registered Practitioner Psychologist' },
+                { abbr: 'B', label: 'BPS', detail: 'Chartered Member' },
+                { abbr: 'E', label: 'EMDR UK', detail: 'EMDR UK Member' },
+              ].map(({ abbr, label, detail }) => (
+                <div
+                  class="flex items-center gap-3 px-4 py-3 rounded-xl"
+                  style="background:rgba(29,78,95,0.04); border:1px solid rgba(29,78,95,0.08);"
+                >
+                  <div
+                    class="w-7 h-7 rounded-full flex items-center justify-center text-white text-[10px] font-bold flex-shrink-0"
+                    style="background:linear-gradient(135deg,#1D4E5F,#2a6b82);"
+                  >
+                    {abbr}
+                  </div>
+                  <div>
+                    <p class="text-xs font-semibold" style="color:#1C1917;">{label}</p>
+                    <p class="text-xs" style="color:#78716C;">{detail}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <!-- Bio + Qualifications -->
+        <div>
+          <h2 class="font-display text-display-sm text-warm leading-tight mb-6">
+            Background &amp; expertise
+          </h2>
+
+          <div class="space-y-4 leading-relaxed mb-10 text-justify" style="color:#44403C;">
+            <p>
+              I am a Highly Specialist Clinical Psychologist registered with the HCPC and holding Chartered Status with the BPS. With over 10 years of experience across NHS primary care, community mental health, inpatient services, and specialist pathways, my work extends internationally across England, Ireland, Palestine, and Mexico. I am a trauma specialist with expertise in anxiety disorders and complex trauma, including challenges relating to identity, attachment, relationships, and fears where trauma has had an impact.
+            </p>
+            <p>
+              My clinical practice is structured, evidence-based, and patient-centred. After an initial assessment, we build a shared understanding of how your difficulties developed and what maintains them — then create a bespoke treatment plan integrating psychological theory, research evidence, lived experience, personal values, and current context. I am committed to providing an anti-discriminatory and inclusive service, recognising the impact of social, cultural, and systemic factors on mental health.
+            </p>
+          </div>
+
+          <!-- Qualifications -->
+          <div class="mb-10">
+            <p class="text-xs font-semibold uppercase tracking-widest mb-4" style="color:#1D4E5F;">
+              Qualifications
+            </p>
+            <div class="grid sm:grid-cols-2 gap-2.5">
+              {[
+                { icon: 'book', label: 'DClinPsy', detail: 'University of Sheffield' },
+                { icon: 'award', label: 'MSc Psychiatric Research', detail: "King's College London" },
+                { icon: 'book', label: 'PGCert Low-Intensity CBT', detail: 'University College London' },
+                { icon: 'award', label: 'UG Cert Public Policy', detail: 'University of Oxford' },
+                { icon: 'shield', label: 'EMDR Standard Training', detail: 'EMDR UK certified' },
+                { icon: 'users', label: 'ADI-R & ADOS-2 Training', detail: 'Neurodevelopmental assessment' },
+              ].map(({ label, detail }) => (
+                <div
+                  class="flex items-center gap-3 p-3 rounded-xl"
+                  style="background:rgba(29,78,95,0.03); border:1px solid rgba(29,78,95,0.07);"
+                >
+                  <div
+                    class="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0"
+                    style="background:rgba(29,78,95,0.08);"
+                  >
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#1D4E5F" stroke-width="1.8" stroke-linecap="round">
+                      <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                    </svg>
+                  </div>
+                  <div class="min-w-0">
+                    <p class="text-xs font-medium leading-tight" style="color:#1C1917;">{label}</p>
+                    <p class="text-[11px] leading-tight" style="color:#78716C;">{detail}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <!-- Specialisms -->
+          <div>
+            <p class="text-xs font-semibold uppercase tracking-widest mb-4" style="color:#1D4E5F;">
+              Areas of Specialism
+            </p>
+            <div class="flex flex-wrap gap-2">
+              {[
+                'Trauma & PTSD', 'Complex PTSD', 'Anxiety Disorders', 'OCD',
+                'Health Anxiety', 'Social Anxiety', 'Panic Disorder', 'Depression',
+                'ADHD & Neurodiversity', 'Personality Disorders', 'Psychosis & Bipolar',
+                'Perinatal Difficulties', 'Chronic Health Conditions',
+                'LGBTQIA+ Affirmative Care', 'Identity & Attachment', 'Relationship Difficulties',
+              ].map(spec => (
+                <span
+                  class="px-3.5 py-2 rounded-full text-xs font-medium"
+                  style="background:rgba(29,78,95,0.05); border:1px solid rgba(29,78,95,0.1); color:#1D4E5F;"
+                >
+                  {spec}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       TYPES OF INTERVENTION
+  ══════════════════════════════════════════ -->
+  <section class="py-20" style="background:#FAF8F4;">
+    <div class="section-container">
+
+      <div class="max-w-2xl mb-12">
+        <div
+          class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium uppercase tracking-widest mb-4"
+          style="background:rgba(29,78,95,0.07); color:#1D4E5F; border:1px solid rgba(29,78,95,0.1);"
+        >
+          Therapeutic Approach
+        </div>
+        <h2 class="font-display text-display-md text-warm leading-tight">
+          Types of<br/>
+          <em class="not-italic" style="background:linear-gradient(135deg,#1D4E5F,#7A9E7E); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">
+            intervention
+          </em>
+        </h2>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-6">
+
+        <!-- CBT -->
+        <div
+          class="p-7 rounded-2xl relative overflow-hidden"
+          style="background:#ffffff; border:1px solid rgba(29,78,95,0.09);"
+        >
+          <div
+            class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium mb-5"
+            style="background:rgba(29,78,95,0.07); color:#1D4E5F;"
+          >
+            CBT
+          </div>
+          <h3 class="font-display text-lg text-warm font-medium mb-3">
+            Cognitive Behavioural Therapy
+          </h3>
+          <p class="text-sm leading-relaxed mb-5" style="color:#44403C;">
+            Focuses on the links between thoughts, emotions, sensations, and behaviours, helping identify and change patterns that maintain difficulties. Includes behavioural activation for depression, graded exposure for phobias, ERP for OCD, cognitive challenging, and behavioural experiments.
+          </p>
+          <a
+            href="https://babcp.com/what-is-cbt/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-1.5 text-xs font-medium transition-opacity hover:opacity-70"
+            style="color:#1D4E5F;"
+          >
+            Learn more via BABCP
+            <svg width="12" height="12" viewBox="0 0 16 16" fill="none">
+              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+
+        <!-- CAT -->
+        <div
+          class="p-7 rounded-2xl"
+          style="background:#ffffff; border:1px solid rgba(29,78,95,0.09);"
+        >
+          <div
+            class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium mb-5"
+            style="background:rgba(122,158,126,0.1); color:#7A9E7E; border:1px solid rgba(122,158,126,0.2);"
+          >
+            CAT
+          </div>
+          <h3 class="font-display text-lg text-warm font-medium mb-3">
+            Cognitive Analytic Therapy
+          </h3>
+          <p class="text-sm leading-relaxed mb-5" style="color:#44403C;">
+            Explores how early experiences and relationship patterns shape current emotional and behavioural difficulties, using a shared formulation to understand and change unhelpful patterns.
+          </p>
+          <a
+            href="https://www.acat.org.uk/cat-explained"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-1.5 text-xs font-medium transition-opacity hover:opacity-70"
+            style="color:#7A9E7E;"
+          >
+            Learn more via ACAT
+            <svg width="12" height="12" viewBox="0 0 16 16" fill="none">
+              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+
+        <!-- EMDR — full width -->
+        <div
+          class="md:col-span-2 p-7 rounded-2xl relative overflow-hidden"
+          style="background:linear-gradient(135deg,#1D4E5F,#0f2d38); border:1px solid rgba(29,78,95,0.1);"
+        >
+          <div class="grid sm:grid-cols-2 gap-8 items-center">
+            <div>
+              <div
+                class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium mb-5"
+                style="background:rgba(255,255,255,0.15); color:rgba(255,255,255,0.9);"
+              >
+                EMDR · Specialist
+              </div>
+              <h3 class="font-display text-xl text-white font-medium mb-3">
+                Eye Movement Desensitisation and Reprocessing
+              </h3>
+              <p class="text-sm leading-relaxed mb-5" style="color:rgba(255,255,255,0.7);">
+                A trauma-focused therapy that helps the brain process distressing memories, so they become less overwhelming — limiting their impact and promoting learning and growth. Sessions run standard 50 minutes or extend to 90 and 120 minutes on a weekly or intensive basis.
+              </p>
+              <a
+                href="https://www.emdr-europe.org/emdr-therapy/emdr-therapy-clients"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-1.5 text-xs font-medium transition-opacity hover:opacity-80"
+                style="color:rgba(255,255,255,0.85);"
+              >
+                Learn more via EMDR Europe
+                <svg width="12" height="12" viewBox="0 0 16 16" fill="none">
+                  <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </a>
+            </div>
+            <div class="space-y-3">
+              {[
+                { label: '50 min', desc: 'Standard weekly session' },
+                { label: '90 min', desc: 'Extended trauma processing' },
+                { label: '120 min', desc: 'Intensive deep-dive session' },
+              ].map(({ label, desc }) => (
+                <div
+                  class="flex items-center gap-4 px-4 py-3 rounded-xl"
+                  style="background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.1);"
+                >
+                  <p class="font-display text-lg font-medium text-white w-16 flex-shrink-0">{label}</p>
+                  <p class="text-xs" style="color:rgba(255,255,255,0.6);">{desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <!-- ACT -->
+        <div
+          class="p-7 rounded-2xl"
+          style="background:#ffffff; border:1px solid rgba(193,125,92,0.15);"
+        >
+          <div
+            class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium mb-5"
+            style="background:rgba(193,125,92,0.08); color:#C17D5C; border:1px solid rgba(193,125,92,0.15);"
+          >
+            ACT · Third Wave CBT
+          </div>
+          <h3 class="font-display text-lg text-warm font-medium mb-3">
+            Acceptance and Commitment Therapy
+          </h3>
+          <p class="text-sm leading-relaxed" style="color:#44403C;">
+            Supports psychological flexibility to relate differently to distressing thoughts and emotions while clarifying personal values and committing to meaningful action.
+          </p>
+        </div>
+
+        <!-- CFT -->
+        <div
+          class="p-7 rounded-2xl"
+          style="background:#ffffff; border:1px solid rgba(193,125,92,0.15);"
+        >
+          <div
+            class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium mb-5"
+            style="background:rgba(193,125,92,0.08); color:#C17D5C; border:1px solid rgba(193,125,92,0.15);"
+          >
+            CFT · Third Wave CBT
+          </div>
+          <h3 class="font-display text-lg text-warm font-medium mb-3">
+            Compassion-Focused Therapy
+          </h3>
+          <p class="text-sm leading-relaxed" style="color:#44403C;">
+            Focuses on reducing shame and self-criticism by developing self-compassion and strengthening emotional regulation.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       HOW THERAPY IS USED — BY PRESENTATION
+  ══════════════════════════════════════════ -->
+  <section class="py-20 border-y" style="background:#ffffff; border-color:rgba(29,78,95,0.07);">
+    <div class="section-container">
+
+      <div class="max-w-2xl mb-12">
+        <div
+          class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium uppercase tracking-widest mb-4"
+          style="background:rgba(29,78,95,0.07); color:#1D4E5F; border:1px solid rgba(29,78,95,0.1);"
+        >
+          Clinical Framework
+        </div>
+        <h2 class="font-display text-display-md text-warm leading-tight">
+          How different therapies<br/>
+          <em class="not-italic" style="background:linear-gradient(135deg,#1D4E5F,#7A9E7E); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">
+            are applied
+          </em>
+        </h2>
+      </div>
+
+      <div class="space-y-5">
+
+        <!-- Anxiety & Mood -->
+        <details
+          class="group rounded-2xl overflow-hidden"
+          style="background:#FAF8F4; border:1px solid rgba(29,78,95,0.08);"
+          open
+        >
+          <summary
+            class="flex items-center justify-between gap-4 p-6 cursor-pointer list-none select-none"
+          >
+            <div class="flex items-center gap-4">
+              <div
+                class="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0"
+                style="background:rgba(29,78,95,0.08);"
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1D4E5F" stroke-width="1.6" stroke-linecap="round">
+                  <path d="M18 20V10M12 20V4M6 20v-6"/>
+                </svg>
+              </div>
+              <div>
+                <p class="font-medium text-sm text-warm">Anxiety &amp; Mood</p>
+                <p class="text-xs" style="color:#78716C;">CBT · ERP · ACT · CFT</p>
+              </div>
+            </div>
+            <svg
+              class="w-4 h-4 flex-shrink-0 transition-transform duration-200 group-open:rotate-180"
+              style="color:#1D4E5F;"
+              viewBox="0 0 16 16" fill="none"
+            >
+              <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </summary>
+          <div class="px-6 pb-6">
+            <div class="pt-4" style="border-top:1px solid rgba(29,78,95,0.07);">
+              <p class="text-sm leading-relaxed" style="color:#44403C;">
+                For anxiety disorders and mood difficulties, interventions may include Cognitive Behavioural Therapy (CBT), Exposure and Relapse Prevention (ERP), Acceptance and Commitment Therapy (ACT), and Compassion-Focused Therapy (CFT). These approaches focus on identifying and modifying unhelpful cognitive, emotional, and behavioural patterns, strengthening emotional regulation, and increasing value-led action.
+              </p>
+            </div>
+          </div>
+        </details>
+
+        <!-- Trauma & PTSD -->
+        <details
+          class="group rounded-2xl overflow-hidden"
+          style="background:#FAF8F4; border:1px solid rgba(29,78,95,0.08);"
+        >
+          <summary
+            class="flex items-center justify-between gap-4 p-6 cursor-pointer list-none select-none"
+          >
+            <div class="flex items-center gap-4">
+              <div
+                class="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0"
+                style="background:rgba(193,125,92,0.1);"
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C17D5C" stroke-width="1.6" stroke-linecap="round">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                </svg>
+              </div>
+              <div>
+                <p class="font-medium text-sm text-warm">Trauma &amp; PTSD</p>
+                <p class="text-xs" style="color:#78716C;">Trauma-focused CBT · EMDR · CAT</p>
+              </div>
+            </div>
+            <svg
+              class="w-4 h-4 flex-shrink-0 transition-transform duration-200 group-open:rotate-180"
+              style="color:#1D4E5F;"
+              viewBox="0 0 16 16" fill="none"
+            >
+              <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </summary>
+          <div class="px-6 pb-6">
+            <div class="pt-4" style="border-top:1px solid rgba(29,78,95,0.07);">
+              <p class="text-sm leading-relaxed" style="color:#44403C;">
+                For trauma and complex post-traumatic stress disorder, therapy may integrate trauma-focused CBT, EMDR, or CAT following standard standalone protocols or integrating modalities for long-lasting and complex difficulties. These approaches allow for both the processing of distressing memories and an understanding of how trauma has shaped identity, attachment, and emotional regulation — exploring cognitive, emotional, relational, and behavioural patterns in depth.
+              </p>
+            </div>
+          </div>
+        </details>
+
+        <!-- Bipolar & Psychosis -->
+        <details
+          class="group rounded-2xl overflow-hidden"
+          style="background:#FAF8F4; border:1px solid rgba(29,78,95,0.08);"
+        >
+          <summary
+            class="flex items-center justify-between gap-4 p-6 cursor-pointer list-none select-none"
+          >
+            <div class="flex items-center gap-4">
+              <div
+                class="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0"
+                style="background:rgba(29,78,95,0.08);"
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1D4E5F" stroke-width="1.6" stroke-linecap="round">
+                  <circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/>
+                </svg>
+              </div>
+              <div>
+                <p class="font-medium text-sm text-warm">Bipolar &amp; Psychosis</p>
+                <p class="text-xs" style="color:#78716C;">CBTp · CAT · EMDR</p>
+              </div>
+            </div>
+            <svg
+              class="w-4 h-4 flex-shrink-0 transition-transform duration-200 group-open:rotate-180"
+              style="color:#1D4E5F;"
+              viewBox="0 0 16 16" fill="none"
+            >
+              <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </summary>
+          <div class="px-6 pb-6">
+            <div class="pt-4" style="border-top:1px solid rgba(29,78,95,0.07);">
+              <p class="text-sm leading-relaxed" style="color:#44403C;">
+                For experiences such as psychosis or bipolar disorder, the focus is on understanding triggers, early warning signs, and patterns linked to mood, perceptual changes, thoughts, and behaviours. CBT for psychosis (CBTp) is a specialised protocol that supports relapse prevention, emotional regulation, and improved coping. CBTp can be used on its own or integrated with CAT or EMDR to process traumatic experiences.
+              </p>
+            </div>
+          </div>
+        </details>
+
+        <!-- Long-Term Health Conditions -->
+        <details
+          class="group rounded-2xl overflow-hidden"
+          style="background:#FAF8F4; border:1px solid rgba(29,78,95,0.08);"
+        >
+          <summary
+            class="flex items-center justify-between gap-4 p-6 cursor-pointer list-none select-none"
+          >
+            <div class="flex items-center gap-4">
+              <div
+                class="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0"
+                style="background:rgba(122,158,126,0.1);"
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7A9E7E" stroke-width="1.6" stroke-linecap="round">
+                  <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+                </svg>
+              </div>
+              <div>
+                <p class="font-medium text-sm text-warm">Long-Term Health Conditions</p>
+                <p class="text-xs" style="color:#78716C;">ACT · CBT · CAT · EMDR</p>
+              </div>
+            </div>
+            <svg
+              class="w-4 h-4 flex-shrink-0 transition-transform duration-200 group-open:rotate-180"
+              style="color:#1D4E5F;"
+              viewBox="0 0 16 16" fill="none"
+            >
+              <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </summary>
+          <div class="px-6 pb-6">
+            <div class="pt-4" style="border-top:1px solid rgba(29,78,95,0.07);">
+              <p class="text-sm leading-relaxed" style="color:#44403C;">
+                Where psychological difficulties are linked to chronic health conditions, neurological disorders, new diagnoses, or other medical concerns, interventions are adapted to address the interaction between physical health and emotional wellbeing. Work may focus on adjustment, coping, identity shifts, and quality of life — using ACT and CBT for behavioural change, or CAT and EMDR where identity, relationships, or traumatic events need reprocessing.
+              </p>
+            </div>
+          </div>
+        </details>
+
+        <!-- Affirmative Care -->
+        <details
+          class="group rounded-2xl overflow-hidden"
+          style="background:#FAF8F4; border:1px solid rgba(29,78,95,0.08);"
+        >
+          <summary
+            class="flex items-center justify-between gap-4 p-6 cursor-pointer list-none select-none"
+          >
+            <div class="flex items-center gap-4">
+              <div
+                class="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0"
+                style="background:rgba(122,158,126,0.1);"
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7A9E7E" stroke-width="1.6" stroke-linecap="round">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
+                </svg>
+              </div>
+              <div>
+                <p class="font-medium text-sm text-warm">Affirmative Care</p>
+                <p class="text-xs" style="color:#78716C;">LGBTQIA+ · Minority groups · Identity</p>
+              </div>
+            </div>
+            <svg
+              class="w-4 h-4 flex-shrink-0 transition-transform duration-200 group-open:rotate-180"
+              style="color:#1D4E5F;"
+              viewBox="0 0 16 16" fill="none"
+            >
+              <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </summary>
+          <div class="px-6 pb-6">
+            <div class="pt-4" style="border-top:1px solid rgba(29,78,95,0.07);">
+              <p class="text-sm leading-relaxed" style="color:#44403C;">
+                For LGBTQIA+ individuals and those from minority groups, therapy provides an affirming space to explore identity, relationships, stress, discrimination, or trauma. Work is grounded in an understanding of social and systemic factors, integrating a validating, strength-based approach within a culturally responsive and integrative evidence-based framework.
+              </p>
+            </div>
+          </div>
+        </details>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       FINAL CTA
+  ══════════════════════════════════════════ -->
+  <section class="py-24" style="background:#FAF8F4;">
+    <div class="section-container text-center">
+      <div class="max-w-2xl mx-auto">
+        <p class="font-display text-display-md text-warm mb-4">
+          Ready to begin?
+        </p>
+        <p class="leading-relaxed mb-10" style="color:#44403C;">
+          Start with a free 15-minute consultation — no commitment, no referral needed.
+          Let's find out how I can help.
+        </p>
+        <div class="flex flex-wrap items-center justify-center gap-4">
+          <a
+            href="https://calendly.com/itzia-morales/30min"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-3 px-10 py-5 text-white font-medium rounded-full text-sm transition-all hover:shadow-lg hover:-translate-y-0.5"
+            style="background:linear-gradient(135deg,#1D4E5F,#2a6b82);"
+          >
+            Book Free Consultation
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <a
+            href="/fees"
+            class="inline-flex items-center gap-3 px-10 py-5 font-medium rounded-full text-sm transition-all bg-white"
+            style="border:1.5px solid rgba(29,78,95,0.2); color:#1D4E5F;"
+          >
+            View Fees
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
