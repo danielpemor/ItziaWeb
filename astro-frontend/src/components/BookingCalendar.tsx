@@ -353,7 +353,7 @@ function PatientForm({
             type="email"
             value={email}
             onChange={(e) => { setEmail(e.target.value); setErrors(p => ({ ...p, email: undefined })); }}
-            placeholder="your@email.com"
+            placeholder="itiza.morales@outlook.com"
             style={inputStyle(!!errors.email)}
             onFocus={e => { e.currentTarget.style.borderColor = '#1D4E5F'; }}
             onBlur={e => { e.currentTarget.style.borderColor = errors.email ? '#EF4444' : 'rgba(29,78,95,0.15)'; }}

@@ -65,13 +65,15 @@ const individualPrices: Record<string, number> = {
   'followup-50min': 60,
 };
 
-// Calendly links for single sessions
 const calendlyLinks: Record<string, string> = {
   'assessment-50min': 'https://calendly.com/itzia-morales/initial-assessment',
-  'therapy-50min':    'https://calendly.com/itzia-morales/therapy-session',
-  'emdr-90min':       'https://calendly.com/itzia-morales/emdr-90min',
-  'emdr-2hr':         'https://calendly.com/itzia-morales/emdr-2hours',
-  'followup-50min':   'https://calendly.com/itzia-morales/follow-up',
+};
+
+const stripeLinks: Record<string, string> = {
+  'followup-50min':   'https://buy.stripe.com/FOLLOWUP_SINGLE',
+  'therapy-50min':    'https://buy.stripe.com/THERAPY_SINGLE',
+  'emdr-90min':       'https://buy.stripe.com/EMDR_90_SINGLE',
+  'emdr-2hr':         'https://buy.stripe.com/EMDR_2H_SINGLE',
 };
 
 // Bundle definitions: service-duration-sessions → stripe link + price
@@ -112,7 +114,7 @@ function getPricing(
       total: unitPrice,
       perSession: unitPrice,
       saving: 0,
-      href: calendlyLinks[key] || '#',
+      href: stripeLinks[key] || calendlyLinks[key] || '#',
       isBundle: false,
     };
   }
@@ -577,7 +579,9 @@ export default function FeesPage() {
                         >
                           {pricing.isBundle
                             ? `Pay ${formatGBP(pricing.total)}`
-                            : `Book & Pay ${formatGBP(pricing.total)}`}
+                            : calendlyLinks[`${service}-${activeDuration}`]
+                            ? `Book ${formatGBP(pricing.total)}`
+                            : `Pay & Book ${formatGBP(pricing.total)}`}
                           <ArrowRight size={15} />
                         </a>
 
@@ -586,7 +590,9 @@ export default function FeesPage() {
                             className="text-center text-[11px]"
                             style={{ color: '#78716C' }}
                           >
-                            You'll choose a date & time on the next step
+                            {calendlyLinks[`${service}-${activeDuration}`]
+                              ? "You'll choose a date & time on the next step"
+                              : "You'll receive a booking link after payment"}
                           </p>
                         )}
                       </>
