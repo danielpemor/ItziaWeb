@@ -375,7 +375,7 @@ export function ServicesSection() {
           style={{ color: '#78716C' }}
         >
           Not sure which service is right for you?{' '}
-          <a href="mailto:hello@drsarahmitchell.co.uk"
+          <a href="mailto:itzia.morales@outlook.com"
             className="font-medium underline underline-offset-2"
             style={{ color: '#2D4A3E' }}
           >
