@@ -293,7 +293,7 @@ const MOCK_SERVICES: Service[] = [
       'No commitment required',
       'Discuss goals & preferences',
       'Ask any questions',
-      'Book via Calendly instantly',
+      'Book online instantly',
     ],
     accent: 'linear-gradient(90deg, #7A9E7E, #5a8260)',
     iconBg: 'rgba(122,158,126,0.08)',

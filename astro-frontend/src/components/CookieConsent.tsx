@@ -46,7 +46,7 @@ export default function CookieConsent() {
                 style={{ color: 'rgba(255,255,255,0.75)' }}
               >
                 This website uses essential cookies and third-party cookies from
-                Calendly for appointment booking. No advertising or tracking
+                Zanda for appointment booking. No advertising or tracking
                 cookies are used.{' '}
                 <a
                   href="/privacy"
