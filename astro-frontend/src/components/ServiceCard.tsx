@@ -1,6 +1,7 @@
 import { motion, useMotionValue, useTransform, useSpring } from 'framer-motion';
 import { Clock, Monitor, MapPin, ArrowRight } from 'lucide-react';
 import { useRef } from 'react';
+import { bookHref } from '../config/booking';
 
 export interface Service {
   id: string;
@@ -170,7 +171,7 @@ export function ServiceCard({ service, index }: { service: Service; index: numbe
 
           {/* CTA */}
           <a
-            href={`/booking?service=${service.id}`}
+            href={bookHref(service.id)}
             className="w-full flex items-center justify-center gap-2 py-3.5 text-white text-sm font-medium rounded-xl transition-all duration-300 hover:opacity-90 hover:shadow-lg hover:-translate-y-0.5"
             style={{ background: 'linear-gradient(135deg, #2D4A3E 0%, #3D6456 100%)' }}
           >

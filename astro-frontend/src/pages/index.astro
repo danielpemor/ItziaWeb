@@ -5,6 +5,9 @@ import { ServicesSection } from '../components/ServiceCard.tsx';
 import ApproachSection from '../components/ApproachSection.tsx';
 import FAQSection from '../components/FAQSection.tsx';
 import LogoStrip from '../components/LogoStrip.tsx';
+import { bookHref, consultHref, OPENS_IN_SAME_TAB } from '../config/booking';
+
+const consultTarget = OPENS_IN_SAME_TAB ? '_self' : '_blank';
 ---
 
 <BaseLayout
@@ -77,8 +80,8 @@ import LogoStrip from '../components/LogoStrip.tsx';
             ))}
           </ul>
           <a
-            href="https://calendly.com/itzia-morales/30min"
-            target="_blank"
+            href={consultHref()}
+            target={consultTarget}
             class="block w-full text-center py-3 text-sm font-medium rounded-xl transition-all"
             style="background:rgba(255,255,255,0.15); color:white; border:1px solid rgba(255,255,255,0.25);"
           >
@@ -114,7 +117,7 @@ import LogoStrip from '../components/LogoStrip.tsx';
             ))}
           </ul>
           <a
-            href="/booking?service=psychological-intervention"
+            href={bookHref('psychological-intervention')}
             class="block w-full text-center py-3 text-sm font-medium rounded-xl text-white transition-all hover:opacity-90"
             style="background:linear-gradient(135deg,#1D4E5F,#2a6b82);"
           >
@@ -150,7 +153,7 @@ import LogoStrip from '../components/LogoStrip.tsx';
             ))}
           </ul>
           <a
-            href="/booking?service=emdr-standard"
+            href={bookHref('emdr-standard')}
             class="block w-full text-center py-3 text-sm font-medium rounded-xl transition-all"
             style="background:rgba(193,125,92,0.1); color:#C17D5C; border:1px solid rgba(193,125,92,0.2);"
           >
@@ -262,8 +265,8 @@ import LogoStrip from '../components/LogoStrip.tsx';
         </p>
         <div class="flex flex-wrap items-center justify-center gap-4">
           <a
-            href="https://calendly.com/itzia-morales/30min"
-            target="_blank"
+            href={consultHref()}
+            target={consultTarget}
             class="inline-flex items-center gap-3 px-10 py-5 text-white font-medium rounded-full text-sm transition-all hover:shadow-lg hover:-translate-y-0.5"
             style="background: linear-gradient(135deg, #1D4E5F, #2a6b82);"
           >
@@ -273,7 +276,7 @@ import LogoStrip from '../components/LogoStrip.tsx';
             </svg>
           </a>
           <a
-            href="/booking"
+            href={bookHref()}
             class="inline-flex items-center gap-3 px-10 py-5 font-medium rounded-full text-sm transition-all bg-white"
             style="border: 1.5px solid rgba(29,78,95,0.2); color: #1D4E5F;"
           >

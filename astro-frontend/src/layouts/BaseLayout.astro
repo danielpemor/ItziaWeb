@@ -1,6 +1,9 @@
 ---
 import '../styles/global.css';
 import CookieConsent from '../components/CookieConsent.tsx';
+import { bookHref, consultHref, OPENS_IN_SAME_TAB } from '../config/booking';
+
+const consultTarget = OPENS_IN_SAME_TAB ? '_self' : '_blank';
 
 export interface Props {
   title?: string;
@@ -77,8 +80,8 @@ const {
           <!-- CTAs -->
           <div class="hidden md:flex items-center gap-3">
             <a
-              href="https://calendly.com/itzia-morales/30min"
-              target="_blank"
+              href={consultHref()}
+              target={consultTarget}
               class="text-sm font-medium px-4 py-2 rounded-full transition-all duration-200"
               style="color: #1D4E5F; border: 1.5px solid rgba(29,78,95,0.25);"
               onmouseover="this.style.background='rgba(29,78,95,0.05)'"
@@ -87,7 +90,7 @@ const {
               Free Consultation
             </a>
             <a
-              href="/booking"
+              href={bookHref()}
               class="text-sm font-medium px-5 py-2.5 rounded-full text-white transition-all duration-200 hover:shadow-md hover:-translate-y-px"
               style="background: linear-gradient(135deg, #1D4E5F, #2a6b82);"
             >
@@ -113,15 +116,15 @@ const {
           <a href="/#faq"      class="text-sm font-medium py-1" style="color:#44403C;">FAQ</a>
           <div class="flex flex-col gap-3 pt-2 border-t" style="border-color:rgba(29,78,95,0.08);">
             <a
-              href="https://calendly.com/itzia-morales/30min"
-              target="_blank"
+              href={consultHref()}
+              target={consultTarget}
               class="text-center py-3 text-sm font-medium rounded-full"
               style="color:#1D4E5F; border: 1.5px solid rgba(29,78,95,0.2);"
             >
               Free Consultation
             </a>
             <a
-              href="/booking"
+              href={bookHref()}
               class="text-center py-3 text-sm font-medium rounded-full text-white"
               style="background: linear-gradient(135deg, #1D4E5F, #2a6b82);"
             >
@@ -179,10 +182,10 @@ const {
             <h4 class="text-xs font-semibold uppercase tracking-widest mb-5 text-white">Services</h4>
             <ul class="space-y-3">
               {[
-                ['Initial Assessment', '/booking?service=initial-assessment'],
-                ['Psychological Therapy', '/booking?service=psychological-intervention'],
-                ['EMDR Therapy', '/booking?service=emdr-standard'],
-                ['Free Consultation', 'https://calendly.com/itzia-morales/30min'],
+                ['Initial Assessment', bookHref('initial-assessment')],
+                ['Psychological Therapy', bookHref('psychological-intervention')],
+                ['EMDR Therapy', bookHref('emdr-standard')],
+                ['Free Consultation', consultHref()],
               ].map(([label, href]) => (
                 <li>
                   <a

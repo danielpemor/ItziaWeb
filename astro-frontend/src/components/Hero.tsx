@@ -3,6 +3,9 @@ import { Shield, Video, Clock, Calendar, Star } from 'lucide-react';
 import ShinyText from '../blocks/ShinyText';
 import Magnet from '../blocks/Magnet';
 import CountUp from '../blocks/CountUp';
+import { bookHref, consultHref, OPENS_IN_SAME_TAB } from '../config/booking';
+
+const consultTarget = OPENS_IN_SAME_TAB ? '_self' : '_blank';
 
 const trustBadges = [
   { icon: Shield,   text: 'HCPC Registered' },
@@ -95,8 +98,8 @@ export default function Hero() {
             >
               <Magnet padding={40}>
                 <a
-                  href="https://calendly.com/itzia-morales/30min"
-                  target="_blank"
+                  href={consultHref()}
+                  target={consultTarget}
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2.5 px-7 py-4 text-white font-medium rounded-full text-sm transition-all hover:shadow-lg hover:-translate-y-0.5"
                   style={{ background: 'linear-gradient(135deg, #1D4E5F, #2a6b82)' }}
@@ -109,7 +112,7 @@ export default function Hero() {
               </Magnet>
               <Magnet padding={40}>
                 <a
-                  href="/booking"
+                  href={bookHref()}
                   className="inline-flex items-center gap-2.5 px-7 py-4 font-medium rounded-full text-sm bg-white transition-all hover:shadow-sm"
                   style={{ border: '1.5px solid rgba(29,78,95,0.2)', color: '#1D4E5F' }}
                 >
@@ -219,8 +222,8 @@ export default function Hero() {
                       </p>
                     </div>
                     <a
-                      href="https://calendly.com/itzia-morales/30min"
-                      target="_blank"
+                      href={consultHref()}
+                      target={consultTarget}
                       rel="noopener noreferrer"
                       className="text-xs font-medium px-3 py-1.5 rounded-full transition-all"
                       style={{ background: 'rgba(255,255,255,0.2)', color: 'white', border: '1px solid rgba(255,255,255,0.3)' }}

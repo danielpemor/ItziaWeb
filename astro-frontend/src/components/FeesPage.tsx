@@ -1,6 +1,9 @@
 import { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Check, ArrowRight, Info, Sparkles } from 'lucide-react';
+import { bookHref, consultHref, OPENS_IN_SAME_TAB } from '../config/booking';
+
+const consultTarget = OPENS_IN_SAME_TAB ? '_self' : '_blank';
 
 /* ═══════════════════════════════════════════
    DATA
@@ -65,28 +68,31 @@ const individualPrices: Record<string, number> = {
   'followup-50min': 60,
 };
 
-const calendlyLinks: Record<string, string> = {
-  'assessment-50min': 'https://calendly.com/itzia-morales/initial-assessment',
+// Maps each fees-matrix entry to a Zanda service id (deep-linked into the
+// booking widget). Payment is taken inside Zanda via Stripe — no per-service
+// payment links needed any more.
+// TODO(Zanda): align these ids with the service names you create in Zanda.
+const zandaServiceId: Record<string, string> = {
+  'assessment-50min': 'initial-assessment',
+  'therapy-50min':    'psychological-intervention',
+  'emdr-90min':       'emdr-90',
+  'emdr-2hr':         'emdr-120',
+  'followup-50min':   'follow-up',
 };
 
-const stripeLinks: Record<string, string> = {
-  'followup-50min':   'https://buy.stripe.com/FOLLOWUP_SINGLE',
-  'therapy-50min':    'https://buy.stripe.com/THERAPY_SINGLE',
-  'emdr-90min':       'https://buy.stripe.com/EMDR_90_SINGLE',
-  'emdr-2hr':         'https://buy.stripe.com/EMDR_2H_SINGLE',
-};
-
-// Bundle definitions: service-duration-sessions → stripe link + price
-const bundleData: Record<string, { name: string; total: number; stripeUrl: string }> = {
-  'therapy-50min-4':  { name: 'Monthly Sessions',   total: 450,  stripeUrl: 'STRIPE_LINK_MONTHLY' },
-  'therapy-50min-6':  { name: 'CBT Start',          total: 700,  stripeUrl: 'STRIPE_LINK_CBT_START' },
-  'therapy-50min-8':  { name: 'CAT Start',          total: 940,  stripeUrl: 'STRIPE_LINK_CAT_START' },
-  'therapy-50min-12': { name: 'CBT Full',           total: 1380, stripeUrl: 'STRIPE_LINK_CBT_FULL' },
-  'therapy-50min-16': { name: 'CAT Full',           total: 1850, stripeUrl: 'STRIPE_LINK_CAT_FULL' },
-  'emdr-90min-4':     { name: 'EMDR+ Monthly',      total: 700,  stripeUrl: 'STRIPE_LINK_EMDR_M90' },
-  'emdr-90min-8':     { name: 'EMDR+ Intensive',    total: 1400, stripeUrl: 'STRIPE_LINK_EMDR_I90' },
-  'emdr-2hr-4':       { name: 'EMDR+ Monthly',      total: 900,  stripeUrl: 'STRIPE_LINK_EMDR_M2H' },
-  'emdr-2hr-8':       { name: 'EMDR+ Intensive',    total: 1800, stripeUrl: 'STRIPE_LINK_EMDR_I2H' },
+// Bundle definitions: service-duration-sessions → display name + price.
+// Bundles are booked through the same Zanda flow (as the base service);
+// configure the package/payment inside Zanda.
+const bundleData: Record<string, { name: string; total: number }> = {
+  'therapy-50min-4':  { name: 'Monthly Sessions',   total: 450  },
+  'therapy-50min-6':  { name: 'CBT Start',          total: 700  },
+  'therapy-50min-8':  { name: 'CAT Start',          total: 940  },
+  'therapy-50min-12': { name: 'CBT Full',           total: 1380 },
+  'therapy-50min-16': { name: 'CAT Full',           total: 1850 },
+  'emdr-90min-4':     { name: 'EMDR+ Monthly',      total: 700  },
+  'emdr-90min-8':     { name: 'EMDR+ Intensive',    total: 1400 },
+  'emdr-2hr-4':       { name: 'EMDR+ Monthly',      total: 900  },
+  'emdr-2hr-8':       { name: 'EMDR+ Intensive',    total: 1800 },
 };
 
 function getSessionCounts(service: ServiceType, duration: SessionDuration): SessionCount[] {
@@ -114,7 +120,7 @@ function getPricing(
       total: unitPrice,
       perSession: unitPrice,
       saving: 0,
-      href: stripeLinks[key] || calendlyLinks[key] || '#',
+      href: bookHref(zandaServiceId[key]),
       isBundle: false,
     };
   }
@@ -128,7 +134,7 @@ function getPricing(
     total: bundle.total,
     perSession: Math.round((bundle.total / sessions) * 100) / 100,
     saving: individualTotal - bundle.total,
-    href: bundle.stripeUrl,
+    href: bookHref(zandaServiceId[key]),
     isBundle: true,
   };
 }
@@ -430,8 +436,8 @@ export default function FeesPage() {
                   <p className="text-xs leading-relaxed" style={{ color: '#78716C' }}>
                     Start with a{' '}
                     <a
-                      href="https://calendly.com/itzia-morales/30min"
-                      target="_blank"
+                      href={consultHref()}
+                      target={consultTarget}
                       rel="noopener noreferrer"
                       className="underline underline-offset-2"
                       style={{ color: '#1D4E5F' }}
@@ -569,7 +575,7 @@ export default function FeesPage() {
                         {/* CTA */}
                         <a
                           href={pricing.href}
-                          target="_blank"
+                          target={consultTarget}
                           rel="noopener noreferrer"
                           className="w-full inline-flex items-center justify-center gap-2.5 py-4 rounded-xl text-sm font-medium text-white transition-all duration-200 hover:opacity-90 hover:-translate-y-0.5 mt-2"
                           style={{
@@ -577,24 +583,16 @@ export default function FeesPage() {
                               'linear-gradient(135deg, #1D4E5F, #2a6b82)',
                           }}
                         >
-                          {pricing.isBundle
-                            ? `Pay ${formatGBP(pricing.total)}`
-                            : calendlyLinks[`${service}-${activeDuration}`]
-                            ? `Book ${formatGBP(pricing.total)}`
-                            : `Pay & Book ${formatGBP(pricing.total)}`}
+                          {`Book ${formatGBP(pricing.total)}`}
                           <ArrowRight size={15} />
                         </a>
 
-                        {!pricing.isBundle && (
-                          <p
-                            className="text-center text-[11px]"
-                            style={{ color: '#78716C' }}
-                          >
-                            {calendlyLinks[`${service}-${activeDuration}`]
-                              ? "You'll choose a date & time on the next step"
-                              : "You'll receive a booking link after payment"}
-                          </p>
-                        )}
+                        <p
+                          className="text-center text-[11px]"
+                          style={{ color: '#78716C' }}
+                        >
+                          You'll choose a date &amp; time and pay securely on the next step.
+                        </p>
                       </>
                     ) : (
                       <div className="text-center py-8">
@@ -644,8 +642,8 @@ export default function FeesPage() {
             find the right option.
           </p>
           <a
-            href="https://calendly.com/itzia-morales/30min"
-            target="_blank"
+            href={consultHref()}
+            target={consultTarget}
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2.5 px-8 py-4 text-white font-medium rounded-full text-sm hover:shadow-lg hover:-translate-y-0.5 transition-all"
             style={{

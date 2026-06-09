@@ -1,4 +1,7 @@
 import { motion } from 'framer-motion';
+import { bookHref, consultHref, OPENS_IN_SAME_TAB } from '../config/booking';
+
+const consultTarget = OPENS_IN_SAME_TAB ? '_self' : '_blank';
 
 const steps = [
   {
@@ -225,8 +228,8 @@ export default function ApproachSection() {
 
             <div className="flex flex-col sm:flex-row gap-3 flex-shrink-0">
               <a
-                href="https://calendly.com/itzia-morales/30min"
-                target="_blank"
+                href={consultHref()}
+                target={consultTarget}
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2.5 px-8 py-4 text-white font-medium rounded-full text-sm transition-all duration-200 hover:opacity-90 hover:-translate-y-0.5"
                 style={{ background: '#C17D5C' }}
@@ -248,7 +251,7 @@ export default function ApproachSection() {
                 </svg>
               </a>
               <a
-                href="/booking"
+                href={bookHref()}
                 className="inline-flex items-center gap-2.5 px-8 py-4 font-medium rounded-full text-sm transition-all duration-200 hover:-translate-y-0.5"
                 style={{
                   color: 'rgba(255,255,255,0.85)',

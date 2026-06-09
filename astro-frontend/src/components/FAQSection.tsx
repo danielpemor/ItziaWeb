@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
+import { consultHref, OPENS_IN_SAME_TAB } from '../config/booking';
+
+const consultTarget = OPENS_IN_SAME_TAB ? '_self' : '_blank';
 
 /* ─── Real FAQ data ─── */
 const faqs = [
@@ -187,8 +190,8 @@ export default function FAQSection() {
             If you have a question that isn&rsquo;t answered here, please don&rsquo;t
             hesitate to{' '}
             <a
-              href="https://calendly.com/itzia-morales/30min"
-              target="_blank"
+              href={consultHref()}
+              target={consultTarget}
               rel="noopener noreferrer"
               className="underline underline-offset-2 transition-colors duration-200"
               style={{ color: '#1D4E5F' }}
@@ -224,8 +227,8 @@ export default function FAQSection() {
             Still have questions?
           </p>
           <a
-            href="https://calendly.com/itzia-morales/30min"
-            target="_blank"
+            href={consultHref()}
+            target={consultTarget}
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-medium text-white transition-all duration-200 hover:opacity-90 hover:-translate-y-0.5"
             style={{ background: 'linear-gradient(135deg, #1D4E5F, #2a6b82)' }}

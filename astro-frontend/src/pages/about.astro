@@ -1,5 +1,8 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { consultHref, OPENS_IN_SAME_TAB } from '../config/booking';
+
+const consultTarget = OPENS_IN_SAME_TAB ? '_self' : '_blank';
 ---
 
 <BaseLayout
@@ -637,8 +640,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         </p>
         <div class="flex flex-wrap items-center justify-center gap-4">
           <a
-            href="https://calendly.com/itzia-morales/30min"
-            target="_blank"
+            href={consultHref()}
+            target={consultTarget}
             rel="noopener noreferrer"
             class="inline-flex items-center gap-3 px-10 py-5 text-white font-medium rounded-full text-sm transition-all hover:shadow-lg hover:-translate-y-0.5"
             style="background:linear-gradient(135deg,#1D4E5F,#2a6b82);"
