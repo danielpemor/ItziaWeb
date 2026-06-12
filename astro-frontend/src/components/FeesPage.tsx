@@ -95,14 +95,12 @@ const bundleData: Record<string, { name: string; total: number }> = {
   'emdr-2hr-8':       { name: 'EMDR+ Intensive',    total: 1800 },
 };
 
-function getSessionCounts(service: ServiceType, duration: SessionDuration): SessionCount[] {
-  if (service === 'assessment' || service === 'followup') return [1];
-  const key = `${service}-${duration}`;
-  const counts: SessionCount[] = [1];
-  ([4, 6, 8, 12, 16] as SessionCount[]).forEach((n) => {
-    if (bundleData[`${key}-${n}`]) counts.push(n);
-  });
-  return counts;
+function getSessionCounts(_service: ServiceType, _duration: SessionDuration): SessionCount[] {
+  // Bundles/packages are PAUSED until Zanda's API supports selling multi-session
+  // packages through the portal. For now we show transparent single-session
+  // pricing only; packages are arranged directly after the initial assessment.
+  // To re-enable later, restore the original logic that read from `bundleData`.
+  return [1];
 }
 
 function getPricing(
@@ -235,8 +233,8 @@ export default function FeesPage() {
               </em>
             </h1>
             <p style={{ color: '#44403C' }} className="leading-relaxed">
-              Select a single session or save with a bundle.
-              All fees are agreed at the time of enquiry.
+              Transparent, per-session pricing — no hidden fees.
+              All fees are agreed at your initial enquiry.
             </p>
           </motion.div>
         </div>
