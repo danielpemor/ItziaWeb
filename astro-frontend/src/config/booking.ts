@@ -37,8 +37,13 @@ export const ZANDA_BOOKING_URL =
 /** Internal page that embeds the Zanda widget inside our own nav/footer. */
 export const BOOKING_PAGE = '/booking';
 
-/** Service id used for the free 15-minute consultation in Zanda. */
-export const CONSULT_SERVICE = 'consultation';
+/**
+ * Free 15-minute consultation runs through Calendly (no account / no payment —
+ * lowest friction for first contact). Paid sessions go through Zanda.
+ * NOTE: to avoid double-bookings, Calendly and Zanda must both sync to the
+ * SAME Google/Outlook calendar so they see each other's busy times.
+ */
+export const CONSULT_URL = 'https://calendly.com/itzia-morales/30min';
 
 /**
  * Reference map: the site's internal service ids → the matching service in
@@ -85,9 +90,9 @@ export function bookHref(serviceId?: string): string {
     : BOOKING_PAGE;
 }
 
-/** Where a "Free Consultation" CTA should point. */
+/** Where a "Free Consultation" CTA should point (Calendly). */
 export function consultHref(): string {
-  return bookHref(CONSULT_SERVICE);
+  return CONSULT_URL;
 }
 
 /**
