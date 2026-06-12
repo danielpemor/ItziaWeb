@@ -129,6 +129,9 @@ export default function Hero() {
               className="text-sm mb-10"
               style={{ color: '#78716C' }}
             >
+              <span className="block mb-1">
+                New here? You'll create a quick account when you book — it takes under a minute.
+              </span>
               Booking with insurance?{' '}
               <a
                 href={insuranceHref()}
