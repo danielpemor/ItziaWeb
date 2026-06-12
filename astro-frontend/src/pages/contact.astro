@@ -1,0 +1,179 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { INSURANCE_CONTACT_EMAIL } from '../config/booking';
+---
+
+<BaseLayout
+  title="Contact — Dr. Itzia Perez Morales"
+  description="Get in touch with Dr. Itzia Perez Morales — general enquiries and bookings with health insurance (AXA, Aviva, Cigna, Healix, Vitality)."
+>
+  <section class="pt-32 pb-20" style="background:#FAF8F4;">
+    <div class="section-container">
+      <div class="max-w-2xl mx-auto">
+
+        <!-- Header -->
+        <div class="mb-10">
+          <a href="/" class="inline-flex items-center gap-2 text-sm mb-6" style="color:#78716C;">
+            <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
+              <path d="M8 3L4 7.5L8 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+            Back to home
+          </a>
+          <h1 class="font-display text-display-md mb-3" style="color:#1C1917;">
+            Get in <em class="not-italic" style="background:linear-gradient(135deg,#1D4E5F,#C17D5C); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">touch</em>
+          </h1>
+          <p class="text-sm leading-relaxed" style="color:#44403C;">
+            For general questions, or to <strong>book using your health insurance</strong> (AXA, Aviva,
+            Cigna, Healix, Vitality), send a message below. For a free 15-minute consultation or a
+            self-funded session, use the booking buttons instead — this form is for enquiries.
+          </p>
+        </div>
+
+        <!-- Card -->
+        <div class="rounded-2xl p-6 sm:p-8" style="background:white; border:1px solid rgba(29,78,95,0.08);">
+          <form id="contact-form" novalidate>
+            <!-- Honeypot (hidden from humans) -->
+            <div style="position:absolute; left:-9999px;" aria-hidden="true">
+              <label>Company <input type="text" name="company" tabindex="-1" autocomplete="off" /></label>
+            </div>
+
+            <div class="grid sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-sm font-medium mb-1.5" style="color:#1C1917;">Full name *</label>
+                <input id="f-name" name="name" type="text" required class="cf-input" placeholder="Your full name" />
+              </div>
+              <div>
+                <label class="block text-sm font-medium mb-1.5" style="color:#1C1917;">Email *</label>
+                <input id="f-email" name="email" type="email" required class="cf-input" placeholder="you@example.com" />
+              </div>
+            </div>
+
+            <div class="grid sm:grid-cols-2 gap-4 mt-4">
+              <div>
+                <label class="block text-sm font-medium mb-1.5" style="color:#1C1917;">Phone (optional)</label>
+                <input id="f-phone" name="phone" type="tel" class="cf-input" placeholder="+44 …" />
+              </div>
+              <div>
+                <label class="block text-sm font-medium mb-1.5" style="color:#1C1917;">Topic</label>
+                <select id="f-topic" name="topic" class="cf-input">
+                  <option>General enquiry</option>
+                  <option>Booking with insurance</option>
+                  <option>Other</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="mt-4">
+              <label class="block text-sm font-medium mb-1.5" style="color:#1C1917;">Message *</label>
+              <textarea id="f-message" name="message" rows="6" required class="cf-input" placeholder="How can I help?"></textarea>
+            </div>
+
+            <p id="cf-error" class="text-sm mt-3 hidden" style="color:#DC2626;"></p>
+
+            <button id="cf-submit" type="submit"
+              class="w-full mt-5 py-4 text-white font-medium rounded-xl text-sm transition-all hover:opacity-90 flex items-center justify-center gap-2"
+              style="background:linear-gradient(135deg,#1D4E5F,#2a6b82);">
+              Send message
+            </button>
+
+            <p class="text-xs mt-4 text-center" style="color:#78716C;">
+              Prefer email? Write to
+              <a href={`mailto:${INSURANCE_CONTACT_EMAIL}`} class="underline underline-offset-2" style="color:#1D4E5F;">{INSURANCE_CONTACT_EMAIL}</a>.
+            </p>
+          </form>
+
+          <!-- Success state -->
+          <div id="cf-success" class="hidden text-center py-8">
+            <div class="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4" style="background:rgba(122,158,126,0.15);">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#5a8260" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 6 9 17l-5-5"/>
+              </svg>
+            </div>
+            <h2 class="font-display text-xl mb-2" style="color:#1C1917;">Message sent</h2>
+            <p class="text-sm" style="color:#44403C;">Thank you — I'll get back to you as soon as possible.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .cf-input {
+    width: 100%;
+    padding: 0.75rem 0.9rem;
+    border-radius: 0.75rem;
+    border: 1.5px solid rgba(29,78,95,0.15);
+    font-size: 0.875rem;
+    color: #1C1917;
+    background: white;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .cf-input:focus { border-color: #1D4E5F; }
+  textarea.cf-input { resize: vertical; }
+</style>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement | null;
+  const errEl = document.getElementById('cf-error');
+  const btn = document.getElementById('cf-submit') as HTMLButtonElement | null;
+  const successEl = document.getElementById('cf-success');
+
+  // Pre-fill for insurance enquiries: /contact?topic=insurance
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('topic') === 'insurance') {
+    const topic = document.getElementById('f-topic') as HTMLSelectElement | null;
+    const msg = document.getElementById('f-message') as HTMLTextAreaElement | null;
+    if (topic) topic.value = 'Booking with insurance';
+    if (msg && !msg.value) {
+      msg.value =
+        "I'd like to book a session using my health insurance. My details:\n\n" +
+        '- Insurer (AXA / Aviva / Cigna / Healix / Vitality): \n' +
+        '- Membership / policy number: \n' +
+        '- Authorisation number: \n' +
+        '- Service I’m interested in: \n' +
+        '- Preferred days/times: ';
+    }
+  }
+
+  function showError(text: string) {
+    if (errEl) { errEl.textContent = text; errEl.classList.remove('hidden'); }
+  }
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    errEl?.classList.add('hidden');
+
+    const payload = {
+      name: (document.getElementById('f-name') as HTMLInputElement).value,
+      email: (document.getElementById('f-email') as HTMLInputElement).value,
+      phone: (document.getElementById('f-phone') as HTMLInputElement).value,
+      topic: (document.getElementById('f-topic') as HTMLSelectElement).value,
+      message: (document.getElementById('f-message') as HTMLTextAreaElement).value,
+      company: (form.querySelector('[name="company"]') as HTMLInputElement)?.value || '',
+    };
+
+    if (!payload.name.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(payload.email) || payload.message.trim().length < 5) {
+      showError('Please enter your name, a valid email, and a short message.');
+      return;
+    }
+
+    if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(data.error || 'Something went wrong.');
+      form.classList.add('hidden');
+      successEl?.classList.remove('hidden');
+    } catch (err: any) {
+      showError(err.message || 'Could not send your message. Please email us directly.');
+      if (btn) { btn.disabled = false; btn.textContent = 'Send message'; }
+    }
+  });
+</script>
