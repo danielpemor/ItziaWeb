@@ -90,5 +90,36 @@ export function consultHref(): string {
   return bookHref(CONSULT_SERVICE);
 }
 
+/**
+ * ── Insurance channel ──────────────────────────────────────────────────────
+ * Insured clients (AXA, Aviva, Cigna, Healix, Vitality) do NOT pay at booking
+ * — their insurer is billed and they must obtain an authorisation number first.
+ * So they bypass the (payment-required) portal and contact the practice directly.
+ *
+ * TODO: confirm this is the correct, real contact email for the practice.
+ */
+export const INSURANCE_CONTACT_EMAIL = 'itzia.morales@outlook.com';
+
+/** A mailto link pre-filled with the details insurers require. */
+export function insuranceHref(): string {
+  const subject = encodeURIComponent('Booking with insurance');
+  const body = encodeURIComponent(
+    [
+      'Hi Dr. Perez Morales,',
+      '',
+      "I'd like to book a session using my health insurance. My details:",
+      '',
+      '- Insurer (AXA / Aviva / Cigna / Healix / Vitality): ',
+      '- Membership / policy number: ',
+      '- Authorisation number: ',
+      '- Service I’m interested in: ',
+      '- Preferred days/times: ',
+      '',
+      'Thank you.',
+    ].join('\n'),
+  );
+  return `mailto:${INSURANCE_CONTACT_EMAIL}?subject=${subject}&body=${body}`;
+}
+
 /** True when CTAs stay on-site (embed) — handy for deciding target="_blank". */
 export const OPENS_IN_SAME_TAB = BOOKING_MODE === 'embed';

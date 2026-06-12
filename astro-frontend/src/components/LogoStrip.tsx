@@ -1,5 +1,3 @@
-import { motion } from 'framer-motion';
-
 const insurers = [
   { name: 'AXA Health', src: '/images/insurers/axa.svg' },
   { name: 'Aviva',      src: '/images/insurers/aviva.svg' },
@@ -8,7 +6,9 @@ const insurers = [
   { name: 'Healix',     src: '/images/insurers/healix.svg' },
 ];
 
-const allLogos = [...insurers, ...insurers, ...insurers];
+// 6 copies → each animated "half" (3 copies) is wide enough to fill large
+// viewports without gaps, and translateX(-50%) loops seamlessly.
+const allLogos = Array.from({ length: 6 }, () => insurers).flat();
 
 export default function LogoStrip() {
   return (
@@ -24,44 +24,31 @@ export default function LogoStrip() {
         </p>
       </div>
 
-      <div className="relative">
+      <div className="logo-marquee relative">
         {/* Fade left */}
-        <div className="absolute left-0 top-0 bottom-0 w-32 z-10 pointer-events-none"
+        <div className="absolute left-0 top-0 bottom-0 w-24 sm:w-32 z-10 pointer-events-none"
           style={{ background: 'linear-gradient(to right, #ffffff, transparent)' }}
         />
         {/* Fade right */}
-        <div className="absolute right-0 top-0 bottom-0 w-32 z-10 pointer-events-none"
+        <div className="absolute right-0 top-0 bottom-0 w-24 sm:w-32 z-10 pointer-events-none"
           style={{ background: 'linear-gradient(to left, #ffffff, transparent)' }}
         />
 
-        <motion.div
-          className="flex items-center gap-14"
-          animate={{ x: ['0%', '-33.33%'] }}
-          transition={{ duration: 25, repeat: Infinity, ease: 'linear' }}
-          style={{ width: 'max-content' }}
-        >
+        <div className="logo-marquee-track flex items-center" style={{ width: 'max-content' }}>
           {allLogos.map((logo, i) => (
             <div
               key={i}
               className="flex items-center justify-center flex-shrink-0"
-              style={{ minWidth: '90px', height: '36px' }}
+              style={{ minWidth: '90px', height: '36px', marginRight: '3.5rem' }}
             >
               <img
                 src={logo.src}
                 alt={logo.name}
-                className="h-7 w-auto object-contain"
+                className="h-7 w-auto object-contain logo-marquee-img"
                 style={{
                   filter: 'grayscale(100%)',
                   opacity: 0.4,
                   transition: 'opacity 0.3s, filter 0.3s',
-                }}
-                onMouseEnter={e => {
-                  e.currentTarget.style.filter = 'grayscale(0%)';
-                  e.currentTarget.style.opacity = '0.9';
-                }}
-                onMouseLeave={e => {
-                  e.currentTarget.style.filter = 'grayscale(100%)';
-                  e.currentTarget.style.opacity = '0.4';
                 }}
                 onError={e => {
                   // Si no carga la imagen, muestra el nombre como texto
@@ -74,7 +61,7 @@ export default function LogoStrip() {
               />
             </div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </div>
   );

@@ -1,7 +1,7 @@
 import { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Check, ArrowRight, Info, Sparkles } from 'lucide-react';
-import { bookHref, consultHref, OPENS_IN_SAME_TAB } from '../config/booking';
+import { bookHref, consultHref, insuranceHref, OPENS_IN_SAME_TAB } from '../config/booking';
 
 const consultTarget = OPENS_IN_SAME_TAB ? '_self' : '_blank';
 
@@ -653,6 +653,17 @@ export default function FeesPage() {
             Book Free Consultation
             <ArrowRight size={15} />
           </a>
+          <p className="text-sm mt-5" style={{ color: '#78716C' }}>
+            Using health insurance?{' '}
+            <a
+              href={insuranceHref()}
+              className="font-medium underline underline-offset-2"
+              style={{ color: '#1D4E5F' }}
+            >
+              Send us your authorisation details
+            </a>{' '}
+            and we'll book you in — no online payment needed.
+          </p>
         </div>
       </section>
     </div>

@@ -3,7 +3,7 @@ import { Shield, Video, Clock, Calendar, Star } from 'lucide-react';
 import ShinyText from '../blocks/ShinyText';
 import Magnet from '../blocks/Magnet';
 import CountUp from '../blocks/CountUp';
-import { bookHref, consultHref, OPENS_IN_SAME_TAB } from '../config/booking';
+import { bookHref, consultHref, insuranceHref, OPENS_IN_SAME_TAB } from '../config/booking';
 
 const consultTarget = OPENS_IN_SAME_TAB ? '_self' : '_blank';
 
@@ -35,7 +35,7 @@ export default function Hero() {
       </div>
 
       <div className="section-container w-full">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center min-h-[calc(100vh-80px)] py-16">
+        <div className="grid lg:grid-cols-2 gap-8 items-center lg:min-h-[calc(100vh-80px)] py-10 lg:py-16">
 
           {/* ── LEFT ── */}
           <div className="relative z-10 max-w-xl">
@@ -94,7 +94,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.45 }}
-              className="flex flex-wrap gap-4 mb-10"
+              className="flex flex-wrap gap-4 mb-4"
             >
               <Magnet padding={40}>
                 <a
@@ -120,6 +120,24 @@ export default function Hero() {
                 </a>
               </Magnet>
             </motion.div>
+
+            {/* Insurance channel */}
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+              className="text-sm mb-10"
+              style={{ color: '#78716C' }}
+            >
+              Booking with insurance?{' '}
+              <a
+                href={insuranceHref()}
+                className="font-medium underline underline-offset-2"
+                style={{ color: '#1D4E5F' }}
+              >
+                Send your authorisation details →
+              </a>
+            </motion.p>
 
             {/* Social proof */}
             <motion.div
@@ -161,16 +179,14 @@ export default function Hero() {
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.9, delay: 0.3 }}
-            className="relative hidden lg:block"
+            className="relative order-first mb-4 lg:order-none lg:mb-0"
           >
-            <div className="relative mx-auto" style={{ maxWidth: '400px' }}>
+            <div className="relative mx-auto w-full max-w-[280px] sm:max-w-[340px] lg:max-w-[400px] group">
 
-              {/* Imagen envuelta en link */}
-              <a
-                href="/about"
-                className="block relative w-full overflow-hidden group"
+              {/* Image card — overlays are SIBLINGS of the /about link (no nested <a>) */}
+              <div
+                className="relative w-full overflow-hidden"
                 style={{ aspectRatio: '3/4', borderRadius: '2rem' }}
-                aria-label="Learn more about Dr. Itzia Perez Morales"
               >
                 <img
                   src="/images/dr-itzia.jpg"
@@ -183,9 +199,16 @@ export default function Hero() {
                   }}
                 />
 
-                {/* Gradient overlay */}
+                {/* Stretched link to /about — covers the image, sits beneath the overlays */}
+                <a
+                  href="/about"
+                  aria-label="Learn more about Dr. Itzia Perez Morales"
+                  className="absolute inset-0 z-[1]"
+                />
+
+                {/* Gradient overlay (decorative, lets clicks pass through) */}
                 <div
-                  className="absolute inset-0"
+                  className="absolute inset-0 z-[2] pointer-events-none"
                   style={{
                     background: `linear-gradient(to bottom,
                       rgba(15,45,56,0.55) 0%,
@@ -201,7 +224,7 @@ export default function Hero() {
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.9 }}
-                  className="absolute top-5 left-5 right-5"
+                  className="absolute top-5 left-5 right-5 z-[3]"
                   style={{
                     background: 'rgba(255,255,255,0.12)',
                     backdropFilter: 'blur(20px)',
@@ -210,7 +233,6 @@ export default function Hero() {
                     borderRadius: '1rem',
                     padding: '0.875rem 1.125rem',
                   }}
-                  onClick={e => e.preventDefault()}
                 >
                   <div className="flex items-center justify-between">
                     <div>
@@ -227,15 +249,14 @@ export default function Hero() {
                       rel="noopener noreferrer"
                       className="text-xs font-medium px-3 py-1.5 rounded-full transition-all"
                       style={{ background: 'rgba(255,255,255,0.2)', color: 'white', border: '1px solid rgba(255,255,255,0.3)' }}
-                      onClick={e => e.stopPropagation()}
                     >
                       Book free →
                     </a>
                   </div>
                 </motion.div>
 
-                {/* Overlay BOTTOM — nombre + stat */}
-                <div className="absolute bottom-0 left-0 right-0 p-5">
+                {/* Overlay BOTTOM — nombre + stat (decorative, clicks pass to /about) */}
+                <div className="absolute bottom-0 left-0 right-0 p-5 z-[2] pointer-events-none">
                   <motion.div
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -259,7 +280,7 @@ export default function Hero() {
                     Highly Specialist Clinical Psychologist
                   </p>
                 </div>
-              </a>
+              </div>
 
               {/* Decorative ring */}
               <div
@@ -271,22 +292,6 @@ export default function Hero() {
 
         </div>
       </div>
-
-      {/* Scroll indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.5 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 pointer-events-none"
-      >
-        <span className="text-xs tracking-widest uppercase" style={{ color: '#78716C' }}>Scroll</span>
-        <motion.div
-          animate={{ y: [0, 6, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity }}
-          className="w-px h-8"
-          style={{ background: 'linear-gradient(to bottom, #1D4E5F, transparent)' }}
-        />
-      </motion.div>
     </section>
   );
 }
