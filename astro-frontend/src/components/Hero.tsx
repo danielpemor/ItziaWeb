@@ -194,7 +194,7 @@ export default function Hero() {
               >
                 <img
                   src="/images/dr-itzia.jpg"
-                  alt="Dr. Itzia Perez Morales"
+                  alt="Dr. Itzia Morales"
                   className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.03]"
                   onError={(e) => {
                     e.currentTarget.style.display = 'none';
@@ -206,7 +206,7 @@ export default function Hero() {
                 {/* Stretched link to /about, covers the image, sits beneath the overlays */}
                 <a
                   href="/about"
-                  aria-label="Learn more about Dr. Itzia Perez Morales"
+                  aria-label="Learn more about Dr. Itzia Morales"
                   className="absolute inset-0 z-[1]"
                 />
 
@@ -278,7 +278,7 @@ export default function Hero() {
                     </span>
                   </motion.div>
                   <p className="font-display text-xl text-white font-medium leading-tight mb-0.5">
-                    Dr. Itzia Perez Morales
+                    Dr. Itzia Morales
                   </p>
                   <p className="text-sm" style={{ color: 'rgba(255,255,255,0.55)' }}>
                     Highly Specialist Clinical Psychologist
