@@ -105,7 +105,7 @@ export function consultHref(): string {
  *
  * TODO: confirm this is the correct, real contact email for the practice.
  */
-export const INSURANCE_CONTACT_EMAIL = 'itzia.morales@outlook.com';
+export const INSURANCE_CONTACT_EMAIL = 'info@myclinicalpsychologist.co.uk';
 
 /**
  * Insured clients are routed to the contact form (pre-filled with the insurer

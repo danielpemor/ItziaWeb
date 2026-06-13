@@ -4,7 +4,7 @@
 // Required env vars (Netlify → Site settings → Environment variables):
 //   RESEND_API_KEY      — your Resend API key (secret)
 //   CONTACT_FROM_EMAIL  — a verified sender, e.g. "Website <noreply@yourdomain.com>"
-//   CONTACT_TO_EMAIL    — where enquiries land (defaults to itzia.morales@outlook.com)
+//   CONTACT_TO_EMAIL    — where enquiries land (defaults to info@myclinicalpsychologist.co.uk)
 
 const RESEND_ENDPOINT = 'https://api.resend.com/emails';
 
@@ -46,17 +46,19 @@ export default async (req) => {
   const authNumber = (data.authNumber || '').trim();
   const message = (data.message || '').trim();
   const honeypot = (data.company || '').trim(); // hidden field; bots fill it
+  const elapsed = Number(data.elapsed) || 0; // ms the form was on screen before submit
 
-  // Silently accept bots so they don't retry.
+  // Silently accept obvious bots so they don't retry.
   if (honeypot) return json({ ok: true });
+  if (elapsed > 0 && elapsed < 2500) return json({ ok: true }); // submitted too fast = bot
 
   if (name.length < 2 || !isEmail(email) || message.length < 5) {
     return json({ error: 'Please enter your name, a valid email, and a short message.' }, 422);
   }
 
   const apiKey = process.env.RESEND_API_KEY;
-  const from = process.env.CONTACT_FROM_EMAIL || 'Website Enquiry <onboarding@resend.dev>';
-  const to = process.env.CONTACT_TO_EMAIL || 'itzia.morales@outlook.com';
+  const from = process.env.CONTACT_FROM_EMAIL || 'My Clinical Psychologist <info@myclinicalpsychologist.co.uk>';
+  const to = process.env.CONTACT_TO_EMAIL || 'info@myclinicalpsychologist.co.uk';
 
   if (!apiKey) {
     return json({ error: 'The contact form is not configured yet. Please email us directly.' }, 503);

@@ -190,6 +190,7 @@ const insurers = ['AXA Health', 'Aviva', 'Cigna', 'Healix', 'Vitality', 'Other']
 </style>
 
 <script>
+  const loadedAt = Date.now(); // anti-bot: measure how long the form was on screen
   const form = document.getElementById('contact-form') as HTMLFormElement | null;
   const errEl = document.getElementById('cf-error');
   const btn = document.getElementById('cf-submit') as HTMLButtonElement | null;
@@ -244,6 +245,7 @@ const insurers = ['AXA Health', 'Aviva', 'Cigna', 'Healix', 'Vitality', 'Other']
       authNumber: val('f-auth'),
       message: val('f-message'),
       company: (form.querySelector('[name="company"]') as HTMLInputElement)?.value || '',
+      elapsed: Date.now() - loadedAt,
     };
 
     if (!payload.name.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(payload.email) || payload.message.trim().length < 5) {
