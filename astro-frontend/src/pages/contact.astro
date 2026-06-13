@@ -86,6 +86,7 @@ const insurers = ['AXA Health', 'Aviva', 'Cigna', 'Healix', 'Vitality', 'Other']
               <select id="f-topic" class="cf-input">
                 <option>General enquiry</option>
                 <option>Booking with insurance</option>
+                <option>Block booking (multiple sessions)</option>
                 <option>Question about a service or therapy</option>
                 <option>Something else</option>
               </select>
@@ -145,7 +146,8 @@ const insurers = ['AXA Health', 'Aviva', 'Cigna', 'Healix', 'Vitality', 'Other']
 
             <p class="text-xs mt-4 text-center" style="color:#78716C;">
               Prefer email? Write to
-              <a href={`mailto:${INSURANCE_CONTACT_EMAIL}`} class="underline underline-offset-2" style="color:#1D4E5F;">{INSURANCE_CONTACT_EMAIL}</a>.
+              <a href={`mailto:${INSURANCE_CONTACT_EMAIL}`} class="underline underline-offset-2" style="color:#1D4E5F;">{INSURANCE_CONTACT_EMAIL}</a>
+              or call <a href="tel:+442030511593" class="underline underline-offset-2" style="color:#1D4E5F;">020 3051 1593</a>.
             </p>
           </form>
 
@@ -201,9 +203,19 @@ const insurers = ['AXA Health', 'Aviva', 'Cigna', 'Healix', 'Vitality', 'Other']
   }
   topicEl?.addEventListener('change', toggleInsurance);
 
-  // Pre-select insurance from /contact?topic=insurance
-  if (new URLSearchParams(window.location.search).get('topic') === 'insurance' && topicEl) {
+  // Pre-select topic from the URL (?topic=insurance | block)
+  const urlTopic = new URLSearchParams(window.location.search).get('topic');
+  if (urlTopic === 'insurance' && topicEl) {
     topicEl.value = 'Booking with insurance';
+  } else if (urlTopic === 'block' && topicEl) {
+    topicEl.value = 'Block booking (multiple sessions)';
+    const msg = document.getElementById('f-message') as HTMLTextAreaElement | null;
+    if (msg && !msg.value) {
+      msg.value =
+        "I'd like to enquire about a block booking. Please let me know the next steps.\n\n" +
+        '- Block I’m interested in (e.g. 8-session CAT Start): \n' +
+        '- Preferred days/times: ';
+    }
   }
   toggleInsurance();
 

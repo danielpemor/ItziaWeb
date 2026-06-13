@@ -84,10 +84,12 @@ export function zandaUrl(_serviceId?: string): string {
  *  - redirect mode → straight to Zanda
  */
 export function bookHref(serviceId?: string): string {
+  // Generic "Book a Session" (no specific service) goes to the fees page first,
+  // so people can choose a single session or a structured block booking before
+  // continuing to payment. Service-specific CTAs go straight to booking.
+  if (!serviceId) return '/fees';
   if (BOOKING_MODE === 'redirect') return zandaUrl(serviceId);
-  return serviceId
-    ? `${BOOKING_PAGE}?service=${encodeURIComponent(serviceId)}`
-    : BOOKING_PAGE;
+  return `${BOOKING_PAGE}?service=${encodeURIComponent(serviceId)}`;
 }
 
 /** Where a "Free Consultation" CTA should point (Calendly). */

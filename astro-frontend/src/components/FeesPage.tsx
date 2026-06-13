@@ -80,27 +80,30 @@ const zandaServiceId: Record<string, string> = {
   'followup-50min':   'follow-up',
 };
 
-// Bundle definitions: service-duration-sessions → display name + price.
-// Bundles are booked through the same Zanda flow (as the base service);
-// configure the package/payment inside Zanda.
+// Block bookings: a structured course of sessions for focused, consistent care.
+// Booked directly with the practice (arranged after the initial assessment),
+// not self-served. Must be used within 4 months of purchase.
 const bundleData: Record<string, { name: string; total: number }> = {
+  // Prices match Zanda's Session Packs exactly (source of truth).
+  // Therapy blocks (Clinical Psychology Session, £120 base):
   'therapy-50min-4':  { name: 'Monthly Sessions',   total: 450  },
   'therapy-50min-6':  { name: 'CBT Start',          total: 700  },
   'therapy-50min-8':  { name: 'CAT Start',          total: 940  },
-  'therapy-50min-12': { name: 'CBT Full',           total: 1380 },
+  'therapy-50min-12': { name: 'CBT and Third Wave', total: 1380 },
   'therapy-50min-16': { name: 'CAT Full',           total: 1850 },
-  'emdr-90min-4':     { name: 'EMDR+ Monthly',      total: 700  },
-  'emdr-90min-8':     { name: 'EMDR+ Intensive',    total: 1400 },
-  'emdr-2hr-4':       { name: 'EMDR+ Monthly',      total: 900  },
-  'emdr-2hr-8':       { name: 'EMDR+ Intensive',    total: 1800 },
+  // EMDR blocks (90-min sessions, £180 base):
+  'emdr-90min-4':     { name: 'EMDR+',              total: 650  },
+  'emdr-90min-8':     { name: 'EMDR+ Intensive',    total: 1250 },
 };
 
-function getSessionCounts(_service: ServiceType, _duration: SessionDuration): SessionCount[] {
-  // Bundles/packages are PAUSED until Zanda's API supports selling multi-session
-  // packages through the portal. For now we show transparent single-session
-  // pricing only; packages are arranged directly after the initial assessment.
-  // To re-enable later, restore the original logic that read from `bundleData`.
-  return [1];
+function getSessionCounts(service: ServiceType, duration: SessionDuration): SessionCount[] {
+  if (service === 'assessment' || service === 'followup') return [1];
+  const key = `${service}-${duration}`;
+  const counts: SessionCount[] = [1];
+  ([4, 6, 8, 12, 16] as SessionCount[]).forEach((n) => {
+    if (bundleData[`${key}-${n}`]) counts.push(n);
+  });
+  return counts;
 }
 
 function getPricing(
@@ -132,7 +135,8 @@ function getPricing(
     total: bundle.total,
     perSession: Math.round((bundle.total / sessions) * 100) / 100,
     saving: individualTotal - bundle.total,
-    href: bookHref(zandaServiceId[key]),
+    // Block bookings are arranged directly with the practice, not self-served.
+    href: '/contact?topic=block',
     isBundle: true,
   };
 }
@@ -233,8 +237,8 @@ export default function FeesPage() {
               </em>
             </h1>
             <p style={{ color: '#44403C' }} className="leading-relaxed">
-              Transparent, per-session pricing, no hidden fees.
-              All fees are agreed at your initial enquiry.
+              Choose a single session or a structured block booking for focused,
+              consistent care. All fees are agreed at your initial enquiry.
             </p>
           </motion.div>
         </div>
@@ -361,7 +365,7 @@ export default function FeesPage() {
                     className="text-xs font-semibold uppercase tracking-widest mb-4"
                     style={{ color: '#1D4E5F' }}
                   >
-                    {availableDurations.length > 1 ? '3' : '2'}. How many sessions?
+                    {availableDurations.length > 1 ? '3' : '2'}. Single session or block booking?
                   </p>
                   <div className="flex flex-wrap gap-3">
                     {availableSessions.map((count) => {
@@ -537,7 +541,7 @@ export default function FeesPage() {
 
                         <div className="flex justify-between items-end">
                           <span className="text-sm" style={{ color: '#78716C' }}>
-                            {pricing.isBundle ? 'Bundle price' : 'Session fee'}
+                            {pricing.isBundle ? 'Block booking' : 'Session fee'}
                           </span>
                           <span
                             className="font-display text-3xl font-semibold"
@@ -564,8 +568,7 @@ export default function FeesPage() {
                               className="text-xs font-medium"
                               style={{ color: '#5a7d5e' }}
                             >
-                              You save {formatGBP(pricing.saving)} ,{' '}
-                              {formatGBP(pricing.perSession)}/session
+                              You save {formatGBP(pricing.saving)}
                             </span>
                           </div>
                         )}
@@ -573,7 +576,7 @@ export default function FeesPage() {
                         {/* CTA */}
                         <a
                           href={pricing.href}
-                          target={consultTarget}
+                          target={pricing.isBundle ? '_self' : consultTarget}
                           rel="noopener noreferrer"
                           className="w-full inline-flex items-center justify-center gap-2.5 py-4 rounded-xl text-sm font-medium text-white transition-all duration-200 hover:opacity-90 hover:-translate-y-0.5 mt-2"
                           style={{
@@ -581,7 +584,9 @@ export default function FeesPage() {
                               'linear-gradient(135deg, #1D4E5F, #2a6b82)',
                           }}
                         >
-                          {`Book ${formatGBP(pricing.total)}`}
+                          {pricing.isBundle
+                            ? 'Enquire about this block booking'
+                            : `Book ${formatGBP(pricing.total)}`}
                           <ArrowRight size={15} />
                         </a>
 
@@ -589,7 +594,9 @@ export default function FeesPage() {
                           className="text-center text-[11px]"
                           style={{ color: '#78716C' }}
                         >
-                          You'll choose a date &amp; time and pay securely on the next step.
+                          {pricing.isBundle
+                            ? "I'll confirm the details and arrange your block booking. Must be used within 4 months."
+                            : "You'll choose a date & time and pay securely on the next step."}
                         </p>
                       </>
                     ) : (
@@ -617,8 +624,9 @@ export default function FeesPage() {
                   className="text-[11px] leading-relaxed"
                   style={{ color: '#78716C' }}
                 >
-                  Bundles available after initial assessment.
-                  Cancellations within 48h charged at full rate.
+                  Block bookings are arranged after the initial assessment and
+                  must be used within 4 months of purchase. Cancellations within
+                  48h are charged at the full rate.
                 </p>
               </div>
             </div>

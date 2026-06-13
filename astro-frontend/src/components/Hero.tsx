@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Shield, Video, Clock, Calendar, Star } from 'lucide-react';
+import { Shield, Video, Clock, Calendar, Star, Globe } from 'lucide-react';
 import ShinyText from '../blocks/ShinyText';
 import Magnet from '../blocks/Magnet';
 import CountUp from '../blocks/CountUp';
@@ -12,6 +12,7 @@ const trustBadges = [
   { icon: Video,    text: 'Online Sessions' },
   { icon: Clock,    text: 'Flexible Hours' },
   { icon: Calendar, text: 'Free Consultation' },
+  { icon: Globe,    text: 'English & Spanish' },
 ];
 
 export default function Hero() {

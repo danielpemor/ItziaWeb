@@ -233,7 +233,7 @@ const MOCK_SERVICES: Service[] = [
     tagline: 'Understanding your unique story',
     description: 'A thorough 60-minute assessment to reach a shared understanding of your difficulties, context, strengths, and goals. Leads to a personalised formulation.',
     duration_minutes: 60,
-    price_gbp: 150,
+    price_gbp: 140,
     modality: 'online',
     features: [
       'Comprehensive clinical interview',
