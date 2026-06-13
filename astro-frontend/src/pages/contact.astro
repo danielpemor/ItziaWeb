@@ -1,11 +1,13 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { INSURANCE_CONTACT_EMAIL } from '../config/booking';
+
+const insurers = ['AXA Health', 'Aviva', 'Cigna', 'Healix', 'Vitality', 'Other'];
 ---
 
 <BaseLayout
-  title="Contact — Dr. Itzia Perez Morales"
-  description="Get in touch with Dr. Itzia Perez Morales — general enquiries and bookings with health insurance (AXA, Aviva, Cigna, Healix, Vitality)."
+  title="Contact, Dr. Itzia Perez Morales"
+  description="Get in touch with Dr. Itzia Perez Morales for general enquiries and bookings with health insurance (AXA, Aviva, Cigna, Healix, Vitality)."
 >
   <section class="pt-32 pb-20" style="background:#FAF8F4;">
     <div class="section-container">
@@ -23,52 +25,117 @@ import { INSURANCE_CONTACT_EMAIL } from '../config/booking';
             Get in <em class="not-italic" style="background:linear-gradient(135deg,#1D4E5F,#C17D5C); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">touch</em>
           </h1>
           <p class="text-sm leading-relaxed" style="color:#44403C;">
-            For general questions, or to <strong>book using your health insurance</strong> (AXA, Aviva,
-            Cigna, Healix, Vitality), send a message below. For a free 15-minute consultation or a
-            self-funded session, use the booking buttons instead — this form is for enquiries.
+            Have a question, or want to book using your <strong>health insurance</strong>? Send a message below
+            and I'll reply personally, usually within one working day. For a free 15-minute consultation or a
+            self-funded session, please use the booking buttons instead.
           </p>
+        </div>
+
+        <!-- Quick info cards -->
+        <div class="grid sm:grid-cols-3 gap-3 mb-8">
+          <div class="p-4 rounded-xl" style="background:white; border:1px solid rgba(29,78,95,0.08);">
+            <p class="text-xs font-semibold uppercase tracking-wide mb-1" style="color:#1D4E5F;">Response time</p>
+            <p class="text-xs" style="color:#78716C;">Within 1 working day</p>
+          </div>
+          <div class="p-4 rounded-xl" style="background:white; border:1px solid rgba(29,78,95,0.08);">
+            <p class="text-xs font-semibold uppercase tracking-wide mb-1" style="color:#1D4E5F;">Sessions</p>
+            <p class="text-xs" style="color:#78716C;">Online via Microsoft Teams</p>
+          </div>
+          <div class="p-4 rounded-xl" style="background:white; border:1px solid rgba(29,78,95,0.08);">
+            <p class="text-xs font-semibold uppercase tracking-wide mb-1" style="color:#1D4E5F;">Confidential</p>
+            <p class="text-xs" style="color:#78716C;">GDPR compliant</p>
+          </div>
         </div>
 
         <!-- Card -->
         <div class="rounded-2xl p-6 sm:p-8" style="background:white; border:1px solid rgba(29,78,95,0.08);">
           <form id="contact-form" novalidate>
-            <!-- Honeypot (hidden from humans) -->
+            <!-- Honeypot -->
             <div style="position:absolute; left:-9999px;" aria-hidden="true">
               <label>Company <input type="text" name="company" tabindex="-1" autocomplete="off" /></label>
             </div>
 
+            <!-- Your details -->
+            <p class="text-xs font-semibold uppercase tracking-widest mb-4" style="color:#1D4E5F;">Your details</p>
             <div class="grid sm:grid-cols-2 gap-4">
               <div>
-                <label class="block text-sm font-medium mb-1.5" style="color:#1C1917;">Full name *</label>
-                <input id="f-name" name="name" type="text" required class="cf-input" placeholder="Your full name" />
+                <label class="cf-label">Full name *</label>
+                <input id="f-name" type="text" required class="cf-input" placeholder="Your full name" />
               </div>
               <div>
-                <label class="block text-sm font-medium mb-1.5" style="color:#1C1917;">Email *</label>
-                <input id="f-email" name="email" type="email" required class="cf-input" placeholder="you@example.com" />
-              </div>
-            </div>
-
-            <div class="grid sm:grid-cols-2 gap-4 mt-4">
-              <div>
-                <label class="block text-sm font-medium mb-1.5" style="color:#1C1917;">Phone (optional)</label>
-                <input id="f-phone" name="phone" type="tel" class="cf-input" placeholder="+44 …" />
+                <label class="cf-label">Email *</label>
+                <input id="f-email" type="email" required class="cf-input" placeholder="you@example.com" />
               </div>
               <div>
-                <label class="block text-sm font-medium mb-1.5" style="color:#1C1917;">Topic</label>
-                <select id="f-topic" name="topic" class="cf-input">
-                  <option>General enquiry</option>
-                  <option>Booking with insurance</option>
-                  <option>Other</option>
+                <label class="cf-label">Phone (optional)</label>
+                <input id="f-phone" type="tel" class="cf-input" placeholder="+44 …" />
+              </div>
+              <div>
+                <label class="cf-label">Preferred reply</label>
+                <select id="f-contact" class="cf-input">
+                  <option>Email</option>
+                  <option>Phone</option>
+                  <option>Either</option>
                 </select>
               </div>
             </div>
 
-            <div class="mt-4">
-              <label class="block text-sm font-medium mb-1.5" style="color:#1C1917;">Message *</label>
-              <textarea id="f-message" name="message" rows="6" required class="cf-input" placeholder="How can I help?"></textarea>
+            <!-- Enquiry type -->
+            <div class="mt-6">
+              <p class="text-xs font-semibold uppercase tracking-widest mb-4" style="color:#1D4E5F;">What is your enquiry about?</p>
+              <select id="f-topic" class="cf-input">
+                <option>General enquiry</option>
+                <option>Booking with insurance</option>
+                <option>Question about a service or therapy</option>
+                <option>Something else</option>
+              </select>
             </div>
 
-            <p id="cf-error" class="text-sm mt-3 hidden" style="color:#DC2626;"></p>
+            <!-- Insurance details (shown only for insurance enquiries) -->
+            <div id="insurance-block" class="mt-6 p-5 rounded-xl hidden" style="background:rgba(29,78,95,0.04); border:1px solid rgba(29,78,95,0.1);">
+              <p class="text-xs font-semibold uppercase tracking-widest mb-1.5" style="color:#1D4E5F;">Insurance details</p>
+              <p class="text-xs mb-4" style="color:#78716C;">
+                Insurers require pre-authorisation before your first session. Share your details below and I'll confirm your cover and book you in.
+              </p>
+
+              <label class="cf-label">Your insurer</label>
+              <div class="flex flex-wrap gap-2 mb-4" id="insurer-group">
+                {insurers.map((ins) => (
+                  <label class="cf-pill">
+                    <input type="radio" name="insurer" value={ins} />
+                    <span>{ins}</span>
+                  </label>
+                ))}
+              </div>
+
+              <div class="grid sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="cf-label">Membership / policy no.</label>
+                  <input id="f-policy" type="text" class="cf-input" placeholder="e.g. 1234567890" />
+                </div>
+                <div>
+                  <label class="cf-label">Authorisation no.</label>
+                  <input id="f-auth" type="text" class="cf-input" placeholder="From your insurer" />
+                </div>
+              </div>
+            </div>
+
+            <!-- Message -->
+            <div class="mt-6">
+              <label class="cf-label">Message *</label>
+              <textarea id="f-message" rows="5" required class="cf-input" placeholder="How can I help? Feel free to mention what you're seeking support with and any preferred days or times."></textarea>
+            </div>
+
+            <!-- Consent -->
+            <label class="flex items-start gap-2.5 mt-5 cursor-pointer">
+              <input id="f-consent" type="checkbox" class="mt-0.5 flex-shrink-0" style="accent-color:#1D4E5F; width:16px; height:16px;" />
+              <span class="text-xs leading-relaxed" style="color:#44403C;">
+                I agree to the <a href="/privacy" class="underline underline-offset-2" style="color:#1D4E5F;">Privacy Policy</a>
+                and consent to Dr. Perez Morales contacting me about my enquiry. *
+              </span>
+            </label>
+
+            <p id="cf-error" class="text-sm mt-4 hidden" style="color:#DC2626;"></p>
 
             <button id="cf-submit" type="submit"
               class="w-full mt-5 py-4 text-white font-medium rounded-xl text-sm transition-all hover:opacity-90 flex items-center justify-center gap-2"
@@ -90,7 +157,7 @@ import { INSURANCE_CONTACT_EMAIL } from '../config/booking';
               </svg>
             </div>
             <h2 class="font-display text-xl mb-2" style="color:#1C1917;">Message sent</h2>
-            <p class="text-sm" style="color:#44403C;">Thank you — I'll get back to you as soon as possible.</p>
+            <p class="text-sm" style="color:#44403C;">Thank you. I'll get back to you as soon as possible.</p>
           </div>
         </div>
       </div>
@@ -99,19 +166,25 @@ import { INSURANCE_CONTACT_EMAIL } from '../config/booking';
 </BaseLayout>
 
 <style>
+  .cf-label { display:block; font-size:0.8rem; font-weight:500; color:#1C1917; margin-bottom:0.375rem; }
   .cf-input {
-    width: 100%;
-    padding: 0.75rem 0.9rem;
-    border-radius: 0.75rem;
-    border: 1.5px solid rgba(29,78,95,0.15);
-    font-size: 0.875rem;
-    color: #1C1917;
-    background: white;
-    outline: none;
-    transition: border-color 0.2s;
+    width:100%; padding:0.7rem 0.9rem; border-radius:0.75rem;
+    border:1.5px solid rgba(29,78,95,0.15); font-size:0.875rem; color:#1C1917;
+    background:white; outline:none; transition:border-color 0.2s;
   }
-  .cf-input:focus { border-color: #1D4E5F; }
-  textarea.cf-input { resize: vertical; }
+  .cf-input:focus { border-color:#1D4E5F; }
+  textarea.cf-input { resize:vertical; }
+  /* Insurer pills */
+  .cf-pill { cursor:pointer; }
+  .cf-pill input { position:absolute; opacity:0; pointer-events:none; }
+  .cf-pill span {
+    display:inline-block; padding:0.4rem 0.85rem; border-radius:9999px;
+    font-size:0.8rem; font-weight:500; color:#44403C; background:white;
+    border:1.5px solid rgba(29,78,95,0.18); transition:all 0.15s;
+  }
+  .cf-pill input:checked + span {
+    background:#1D4E5F; color:white; border-color:#1D4E5F;
+  }
 </style>
 
 <script>
@@ -119,24 +192,24 @@ import { INSURANCE_CONTACT_EMAIL } from '../config/booking';
   const errEl = document.getElementById('cf-error');
   const btn = document.getElementById('cf-submit') as HTMLButtonElement | null;
   const successEl = document.getElementById('cf-success');
+  const topicEl = document.getElementById('f-topic') as HTMLSelectElement | null;
+  const insBlock = document.getElementById('insurance-block');
 
-  // Pre-fill for insurance enquiries: /contact?topic=insurance
-  const params = new URLSearchParams(window.location.search);
-  if (params.get('topic') === 'insurance') {
-    const topic = document.getElementById('f-topic') as HTMLSelectElement | null;
-    const msg = document.getElementById('f-message') as HTMLTextAreaElement | null;
-    if (topic) topic.value = 'Booking with insurance';
-    if (msg && !msg.value) {
-      msg.value =
-        "I'd like to book a session using my health insurance. My details:\n\n" +
-        '- Insurer (AXA / Aviva / Cigna / Healix / Vitality): \n' +
-        '- Membership / policy number: \n' +
-        '- Authorisation number: \n' +
-        '- Service I’m interested in: \n' +
-        '- Preferred days/times: ';
-    }
+  function toggleInsurance() {
+    if (!topicEl || !insBlock) return;
+    insBlock.classList.toggle('hidden', topicEl.value !== 'Booking with insurance');
   }
+  topicEl?.addEventListener('change', toggleInsurance);
 
+  // Pre-select insurance from /contact?topic=insurance
+  if (new URLSearchParams(window.location.search).get('topic') === 'insurance' && topicEl) {
+    topicEl.value = 'Booking with insurance';
+  }
+  toggleInsurance();
+
+  function val(id: string) {
+    return (document.getElementById(id) as HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement | null)?.value || '';
+  }
   function showError(text: string) {
     if (errEl) { errEl.textContent = text; errEl.classList.remove('hidden'); }
   }
@@ -145,12 +218,19 @@ import { INSURANCE_CONTACT_EMAIL } from '../config/booking';
     e.preventDefault();
     errEl?.classList.add('hidden');
 
+    const consent = (document.getElementById('f-consent') as HTMLInputElement | null)?.checked;
+    const insurer = (form.querySelector('input[name="insurer"]:checked') as HTMLInputElement | null)?.value || '';
+
     const payload = {
-      name: (document.getElementById('f-name') as HTMLInputElement).value,
-      email: (document.getElementById('f-email') as HTMLInputElement).value,
-      phone: (document.getElementById('f-phone') as HTMLInputElement).value,
-      topic: (document.getElementById('f-topic') as HTMLSelectElement).value,
-      message: (document.getElementById('f-message') as HTMLTextAreaElement).value,
+      name: val('f-name'),
+      email: val('f-email'),
+      phone: val('f-phone'),
+      preferredContact: val('f-contact'),
+      topic: val('f-topic'),
+      insurer,
+      policyNumber: val('f-policy'),
+      authNumber: val('f-auth'),
+      message: val('f-message'),
       company: (form.querySelector('[name="company"]') as HTMLInputElement)?.value || '',
     };
 
@@ -158,9 +238,12 @@ import { INSURANCE_CONTACT_EMAIL } from '../config/booking';
       showError('Please enter your name, a valid email, and a short message.');
       return;
     }
+    if (!consent) {
+      showError('Please agree to the Privacy Policy so I can reply to you.');
+      return;
+    }
 
     if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
-
     try {
       const res = await fetch('/api/contact', {
         method: 'POST',
@@ -168,7 +251,7 @@ import { INSURANCE_CONTACT_EMAIL } from '../config/booking';
         body: JSON.stringify(payload),
       });
       const data = await res.json().catch(() => ({}));
-      if (!res.ok) throw new Error(data.error || 'Something went wrong.');
+      if (!res.ok) throw new Error((data as any).error || 'Something went wrong.');
       form.classList.add('hidden');
       successEl?.classList.remove('hidden');
     } catch (err: any) {

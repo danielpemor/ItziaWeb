@@ -8,7 +8,7 @@ const steps = [
     number: '01',
     title: 'Free Consultation',
     description:
-      'A brief 15-minute conversation to discuss your main difficulties, goals, and preferences — and to see if we\u2019re a good fit. No commitment, no referral needed.',
+      'A brief 15-minute conversation to discuss your main difficulties, goals, and preferences, and to see if we\u2019re a good fit. No commitment, no referral needed.',
     accent: {
       bg: 'rgba(29,78,95,0.06)',
       text: '#1D4E5F',
@@ -20,7 +20,7 @@ const steps = [
     number: '02',
     title: 'Initial Assessment',
     description:
-      'A thorough 60-minute session to explore your background, strengths, and context. Together we build a formulation — a collaborative map of how difficulties developed and what keeps them going.',
+      'A thorough 60-minute session to explore your background, strengths, and context. Together we build a formulation, a collaborative map of how difficulties developed and what keeps them going.',
     accent: {
       bg: 'rgba(193,125,92,0.06)',
       text: '#C17D5C',
@@ -32,7 +32,7 @@ const steps = [
     number: '03',
     title: 'Evidence-Based Therapy',
     description:
-      'Guided by your formulation, I draw on CBT, EMDR, CAT, or an integrative approach — adapting to your needs, pace, and goals while following the strongest research evidence.',
+      'Guided by your formulation, I draw on CBT, EMDR, CAT, or an integrative approach, adapting to your needs, pace, and goals while following the strongest research evidence.',
     accent: {
       bg: 'rgba(29,78,95,0.06)',
       text: '#1D4E5F',
@@ -220,7 +220,7 @@ export default function ApproachSection() {
                 className="max-w-lg leading-relaxed"
                 style={{ color: 'rgba(255,255,255,0.65)' }}
               >
-                Start with a free 15-minute consultation — no commitment, no
+                Start with a free 15-minute consultation, no commitment, no
                 referral needed. Or book a session directly if you already know
                 what you need.
               </p>

@@ -249,7 +249,7 @@ const MOCK_SERVICES: Service[] = [
     id: 'psychological-intervention',
     name: 'Psychological Therapy',
     tagline: 'Evidence-based, tailored to you',
-    description: 'Individual therapy sessions using CBT, EMDR, CAT, ACT or CFT — adapted to your needs, developmental stage, and therapeutic goals.',
+    description: 'Individual therapy sessions using CBT, EMDR, CAT, ACT or CFT, adapted to your needs, developmental stage, and therapeutic goals.',
     duration_minutes: 50,
     price_gbp: 120,
     modality: 'online',
@@ -355,7 +355,7 @@ export function ServicesSection() {
           >
             Each service is designed to meet you where you are.
             Whether you're seeking therapy, a diagnostic assessment,
-            or targeted coaching — there's a pathway for you.
+            or targeted coaching, there's a pathway for you.
           </motion.p>
         </div>
 

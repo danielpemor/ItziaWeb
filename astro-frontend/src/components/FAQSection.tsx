@@ -10,12 +10,12 @@ const faqs = [
   {
     question: 'What happens during the free consultation?',
     answer:
-      'The free 15-minute consultation is an opportunity for us to briefly discuss your main difficulties, goals, and preferences. It also allows you to ask questions about the service, fees, and how I work. There is no pressure or commitment — it\u2019s simply a chance to see whether we\u2019re a good fit.',
+      'The free 15-minute consultation is an opportunity for us to briefly discuss your main difficulties, goals, and preferences. It also allows you to ask questions about the service, fees, and how I work. There is no pressure or commitment, it\u2019s simply a chance to see whether we\u2019re a good fit.',
   },
   {
     question: 'What can I expect from the initial assessment?',
     answer:
-      'The initial assessment is a 60-minute session where we explore your main difficulties, their impact, and your background in detail. Together we build a formulation — a collaborative map of how your difficulties developed, what keeps them going, and how they can be changed. This formulation guides the treatment plan, ensuring therapy is evidence-based, tailored, and responsive to your individual context.',
+      'The initial assessment is a 60-minute session where we explore your main difficulties, their impact, and your background in detail. Together we build a formulation, a collaborative map of how your difficulties developed, what keeps them going, and how they can be changed. This formulation guides the treatment plan, ensuring therapy is evidence-based, tailored, and responsive to your individual context.',
   },
   {
     question: 'How long does therapy usually last?',
@@ -45,7 +45,7 @@ const faqs = [
   {
     question: 'What is the cancellation policy?',
     answer:
-      'Cancellations made more than 48 hours before the scheduled appointment are free of charge. Late cancellations — those made within 48 hours — are charged at the full session rate unless the session can be rescheduled within the same week.',
+      'Cancellations made more than 48 hours before the scheduled appointment are free of charge. Late cancellations, those made within 48 hours, are charged at the full session rate unless the session can be rescheduled within the same week.',
   },
   {
     question: 'How do I know which therapy is right for me?',

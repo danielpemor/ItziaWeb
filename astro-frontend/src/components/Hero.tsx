@@ -86,7 +86,7 @@ export default function Hero() {
             >
               Highly Specialist Clinical Psychologist with 10+ years of NHS
               and private experience. Trauma-focused therapy using CBT, EMDR,
-              and CAT — online, tailored to you.
+              and CAT, online, tailored to you.
             </motion.p>
 
             {/* CTAs */}
@@ -130,7 +130,7 @@ export default function Hero() {
               style={{ color: '#78716C' }}
             >
               <span className="block mb-1">
-                New here? You'll create a quick account when you book — it takes under a minute.
+                New here? You'll create a quick account when you book, it takes under a minute.
               </span>
               Booking with insurance?{' '}
               <a
@@ -177,7 +177,7 @@ export default function Hero() {
             </motion.div>
           </div>
 
-          {/* ── RIGHT — imagen como link a /about ── */}
+          {/* ── RIGHT, imagen como link a /about ── */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
@@ -186,7 +186,7 @@ export default function Hero() {
           >
             <div className="relative mx-auto w-full max-w-[280px] sm:max-w-[340px] lg:max-w-[400px] group">
 
-              {/* Image card — overlays are SIBLINGS of the /about link (no nested <a>) */}
+              {/* Image card, overlays are SIBLINGS of the /about link (no nested <a>) */}
               <div
                 className="relative w-full overflow-hidden"
                 style={{ aspectRatio: '3/4', borderRadius: '2rem' }}
@@ -202,7 +202,7 @@ export default function Hero() {
                   }}
                 />
 
-                {/* Stretched link to /about — covers the image, sits beneath the overlays */}
+                {/* Stretched link to /about, covers the image, sits beneath the overlays */}
                 <a
                   href="/about"
                   aria-label="Learn more about Dr. Itzia Perez Morales"
@@ -222,7 +222,7 @@ export default function Hero() {
                   }}
                 />
 
-                {/* Overlay TOP — Free consultation */}
+                {/* Overlay TOP, Free consultation */}
                 <motion.div
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -258,7 +258,7 @@ export default function Hero() {
                   </div>
                 </motion.div>
 
-                {/* Overlay BOTTOM — nombre + stat (decorative, clicks pass to /about) */}
+                {/* Overlay BOTTOM, nombre + stat (decorative, clicks pass to /about) */}
                 <div className="absolute bottom-0 left-0 right-0 p-5 z-[2] pointer-events-none">
                   <motion.div
                     initial={{ opacity: 0, y: 10 }}

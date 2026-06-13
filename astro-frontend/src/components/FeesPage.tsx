@@ -37,13 +37,13 @@ const services: {
   {
     value: 'therapy',
     label: 'Psychological Therapy',
-    desc: 'CBT, CAT, ACT or CFT — tailored to your needs',
+    desc: 'CBT, CAT, ACT or CFT, tailored to your needs',
     durations: ['50min'],
   },
   {
     value: 'emdr',
     label: 'EMDR Therapy',
-    desc: 'Trauma processing — standard or extended sessions',
+    desc: 'Trauma processing, standard or extended sessions',
     durations: ['90min', '2hr'],
   },
   {
@@ -69,7 +69,7 @@ const individualPrices: Record<string, number> = {
 };
 
 // Maps each fees-matrix entry to a Zanda service id (deep-linked into the
-// booking widget). Payment is taken inside Zanda via Stripe — no per-service
+// booking widget). Payment is taken inside Zanda via Stripe, no per-service
 // payment links needed any more.
 // TODO(Zanda): align these ids with the service names you create in Zanda.
 const zandaServiceId: Record<string, string> = {
@@ -233,7 +233,7 @@ export default function FeesPage() {
               </em>
             </h1>
             <p style={{ color: '#44403C' }} className="leading-relaxed">
-              Transparent, per-session pricing — no hidden fees.
+              Transparent, per-session pricing, no hidden fees.
               All fees are agreed at your initial enquiry.
             </p>
           </motion.div>
@@ -442,7 +442,7 @@ export default function FeesPage() {
                     >
                       free 15-minute consultation
                     </a>{' '}
-                    to discuss your needs — no commitment required.
+                    to discuss your needs, no commitment required.
                   </p>
                 </div>
               </div>
@@ -564,7 +564,7 @@ export default function FeesPage() {
                               className="text-xs font-medium"
                               style={{ color: '#5a7d5e' }}
                             >
-                              You save {formatGBP(pricing.saving)} —{' '}
+                              You save {formatGBP(pricing.saving)} ,{' '}
                               {formatGBP(pricing.perSession)}/session
                             </span>
                           </div>
@@ -660,7 +660,7 @@ export default function FeesPage() {
             >
               Send us your authorisation details
             </a>{' '}
-            and we'll book you in — no online payment needed.
+            and we'll book you in, no online payment needed.
           </p>
         </div>
       </section>

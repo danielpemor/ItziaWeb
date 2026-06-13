@@ -39,7 +39,11 @@ export default async (req) => {
   const name = (data.name || '').trim();
   const email = (data.email || '').trim();
   const phone = (data.phone || '').trim();
+  const preferredContact = (data.preferredContact || '').trim();
   const topic = (data.topic || 'General enquiry').trim();
+  const insurer = (data.insurer || '').trim();
+  const policyNumber = (data.policyNumber || '').trim();
+  const authNumber = (data.authNumber || '').trim();
   const message = (data.message || '').trim();
   const honeypot = (data.company || '').trim(); // hidden field; bots fill it
 
@@ -58,14 +62,25 @@ export default async (req) => {
     return json({ error: 'The contact form is not configured yet. Please email us directly.' }, 503);
   }
 
+  const insuranceRows =
+    insurer || policyNumber || authNumber
+      ? `
+      <h3 style="margin:16px 0 8px;font-size:14px">Insurance details</h3>
+      <p style="margin:0 0 4px"><strong>Insurer:</strong> ${escapeHtml(insurer) || '-'}</p>
+      <p style="margin:0 0 4px"><strong>Membership / policy no.:</strong> ${escapeHtml(policyNumber) || '-'}</p>
+      <p style="margin:0 0 4px"><strong>Authorisation no.:</strong> ${escapeHtml(authNumber) || '-'}</p>`
+      : '';
+
   const html = `
     <div style="font-family:system-ui,sans-serif;font-size:14px;color:#1c1917;line-height:1.6">
       <h2 style="margin:0 0 12px">New website enquiry</h2>
       <p style="margin:0 0 4px"><strong>Topic:</strong> ${escapeHtml(topic)}</p>
       <p style="margin:0 0 4px"><strong>Name:</strong> ${escapeHtml(name)}</p>
       <p style="margin:0 0 4px"><strong>Email:</strong> ${escapeHtml(email)}</p>
-      <p style="margin:0 0 12px"><strong>Phone:</strong> ${escapeHtml(phone) || '—'}</p>
-      <p style="margin:0 0 4px"><strong>Message:</strong></p>
+      <p style="margin:0 0 4px"><strong>Phone:</strong> ${escapeHtml(phone) || '-'}</p>
+      <p style="margin:0 0 12px"><strong>Preferred reply:</strong> ${escapeHtml(preferredContact) || '-'}</p>
+      ${insuranceRows}
+      <h3 style="margin:16px 0 8px;font-size:14px">Message</h3>
       <p style="white-space:pre-wrap;margin:0;padding:12px;background:#faf8f4;border-radius:8px">${escapeHtml(message)}</p>
     </div>`;
 

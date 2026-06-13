@@ -15,7 +15,7 @@
  *      our own layout). Flip it to 'redirect' if you ever prefer sending users
  *      straight to the hosted Zanda portal.
  *
- *  No backend is required for any of this — Zanda runs the calendar, Stripe
+ *  No backend is required for any of this, Zanda runs the calendar, Stripe
  *  payments, notes and reminders on their side; the site just opens the widget.
  * ──────────────────────────────────────────────────────────────────────────
  */
@@ -38,7 +38,7 @@ export const ZANDA_BOOKING_URL =
 export const BOOKING_PAGE = '/booking';
 
 /**
- * Free 15-minute consultation runs through Calendly (no account / no payment —
+ * Free 15-minute consultation runs through Calendly (no account / no payment,
  * lowest friction for first contact). Paid sessions go through Zanda.
  * NOTE: to avoid double-bookings, Calendly and Zanda must both sync to the
  * SAME Google/Outlook calendar so they see each other's busy times.
@@ -71,7 +71,7 @@ export const ZANDA_SERVICE_IDS: Record<string, string> = {
 
 /**
  * The Zanda portal URL. `serviceId` is accepted so callers don't have to
- * change, but is currently ignored — the portal drops query params on its
+ * change, but is currently ignored, the portal drops query params on its
  * session redirect, so there's no reliable way to pre-select a service yet.
  */
 export function zandaUrl(_serviceId?: string): string {
@@ -98,7 +98,7 @@ export function consultHref(): string {
 /**
  * ── Insurance channel ──────────────────────────────────────────────────────
  * Insured clients (AXA, Aviva, Cigna, Healix, Vitality) do NOT pay at booking
- * — their insurer is billed and they must obtain an authorisation number first.
+ *, their insurer is billed and they must obtain an authorisation number first.
  * So they bypass the (payment-required) portal and contact the practice directly.
  *
  * TODO: confirm this is the correct, real contact email for the practice.
@@ -114,5 +114,5 @@ export function insuranceHref(): string {
   return '/contact?topic=insurance';
 }
 
-/** True when CTAs stay on-site (embed) — handy for deciding target="_blank". */
+/** True when CTAs stay on-site (embed), handy for deciding target="_blank". */
 export const OPENS_IN_SAME_TAB = BOOKING_MODE === 'embed';
