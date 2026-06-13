@@ -36,17 +36,32 @@ export default function Hero() {
       </div>
 
       <div className="section-container w-full">
-        <div className="grid lg:grid-cols-2 gap-8 items-center lg:min-h-[calc(100vh-80px)] py-10 lg:py-16">
+        <div className="grid lg:grid-cols-2 gap-5 lg:gap-8 items-center lg:min-h-[calc(100vh-80px)] py-8 lg:py-16">
+
+          {/* Mobile-only eyebrow — sits above the image on phones */}
+          <div className="order-1 lg:hidden">
+            <div
+              className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full"
+              style={{ background: 'rgba(29,78,95,0.07)', border: '1px solid rgba(29,78,95,0.12)' }}
+            >
+              <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: '#7A9E7E' }} />
+              <ShinyText
+                text="Trauma Specialist · Clinical Psychologist"
+                className="text-xs font-medium tracking-widest uppercase"
+                speed={4}
+              />
+            </div>
+          </div>
 
           {/* ── LEFT ── */}
-          <div className="relative z-10 max-w-xl">
+          <div className="relative z-10 max-w-xl order-3 lg:order-1">
 
             {/* Eyebrow */}
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full mb-8"
+              className="hidden lg:inline-flex items-center gap-2.5 px-4 py-2 rounded-full mb-8"
               style={{ background: 'rgba(29,78,95,0.07)', border: '1px solid rgba(29,78,95,0.12)' }}
             >
               <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: '#7A9E7E' }} />
@@ -183,9 +198,9 @@ export default function Hero() {
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.9, delay: 0.3 }}
-            className="relative order-first mb-4 lg:order-none lg:mb-0"
+            className="relative order-2 mb-1 lg:order-2 lg:mb-0"
           >
-            <div className="relative mx-auto w-full max-w-[280px] sm:max-w-[340px] lg:max-w-[400px] group">
+            <div className="relative mx-auto w-full max-w-[330px] sm:max-w-[380px] lg:max-w-[400px] group">
 
               {/* Image card, overlays are SIBLINGS of the /about link (no nested <a>) */}
               <div
