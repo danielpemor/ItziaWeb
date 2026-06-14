@@ -36,10 +36,11 @@ export default function Hero() {
       </div>
 
       <div className="section-container w-full">
-        <div className="grid lg:grid-cols-2 gap-6 lg:gap-8 items-center lg:min-h-[calc(100vh-80px)] py-8 lg:py-16">
+        <div className="relative z-10 grid lg:grid-cols-2 gap-0 lg:gap-8 items-center lg:min-h-[calc(100vh-80px)] py-8 lg:py-16">
 
-          {/* ── LEFT ── */}
-          <div className="relative z-10 max-w-xl">
+          {/* ── LEFT (becomes individual grid items on mobile via `contents`,
+               so the image/CTAs/headline can be reordered; on lg it's one column) ── */}
+          <div className="contents lg:block lg:relative lg:z-10 lg:max-w-xl lg:order-1">
 
             {/* Eyebrow */}
             <motion.div
@@ -62,7 +63,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.2 }}
-              className="font-display text-[2.5rem] sm:text-[3rem] lg:text-[clamp(3rem,6vw,4.5rem)] tracking-[-0.02em] text-warm leading-[1.06] mb-6"
+              className="order-3 font-display text-[2.5rem] sm:text-[3rem] lg:text-[clamp(3rem,6vw,4.5rem)] tracking-[-0.02em] text-warm leading-[1.06] mb-6"
             >
               Specialist care
               <br />
@@ -82,7 +83,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.35 }}
-              className="text-lg leading-relaxed mb-10"
+              className="order-4 text-lg leading-relaxed mb-10"
               style={{ color: '#44403C' }}
             >
               Highly Specialist Clinical Psychologist with 10+ years of NHS
@@ -95,7 +96,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.45 }}
-              className="flex flex-wrap gap-4 mb-4"
+              className="order-2 flex flex-wrap gap-4 mb-6 lg:mb-4"
             >
               <Magnet padding={40}>
                 <a
@@ -127,7 +128,7 @@ export default function Hero() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.5 }}
-              className="text-sm mb-10"
+              className="order-5 text-sm mb-10"
               style={{ color: '#78716C' }}
             >
               <span className="block mb-1">
@@ -148,7 +149,7 @@ export default function Hero() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.55 }}
-              className="flex items-center gap-5 pb-10 border-b"
+              className="order-6 flex items-center gap-5 pt-8 pb-10 border-b lg:pt-0"
               style={{ borderColor: 'rgba(29,78,95,0.08)' }}
             >
               <div className="flex items-center gap-1">
@@ -167,7 +168,7 @@ export default function Hero() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.65 }}
-              className="flex flex-wrap gap-x-6 gap-y-3 pt-8"
+              className="order-7 flex flex-wrap gap-x-6 gap-y-3 pt-8"
             >
               {trustBadges.map(({ icon: Icon, text }) => (
                 <div key={text} className="flex items-center gap-2 text-sm" style={{ color: '#78716C' }}>
@@ -183,7 +184,7 @@ export default function Hero() {
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.9, delay: 0.3 }}
-            className="relative order-first lg:order-none"
+            className="relative order-1 mb-6 lg:order-2 lg:mb-0"
           >
             <div className="relative mx-auto w-full max-w-[330px] sm:max-w-[380px] lg:max-w-[400px] group">
 
