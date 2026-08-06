@@ -11,7 +11,7 @@ const consultTarget = OPENS_IN_SAME_TAB ? '_self' : '_blank';
 
 type ServiceType = 'assessment' | 'therapy' | 'emdr' | 'followup';
 type SessionDuration = '50min' | '90min' | '2hr';
-type SessionCount = 1 | 4 | 6 | 8 | 12 | 16;
+type SessionCount = 1 | 4 | 8 | 12 | 16;
 
 type PricingResult = {
   label: string;
@@ -84,23 +84,25 @@ const zandaServiceId: Record<string, string> = {
 // Booked directly with the practice (arranged after the initial assessment),
 // not self-served. Must be used within 4 months of purchase.
 const bundleData: Record<string, { name: string; total: number }> = {
-  // Prices match Zanda's Session Packs exactly (source of truth).
-  // Therapy blocks (Clinical Psychology Session, £120 base):
-  'therapy-50min-4':  { name: 'Monthly Sessions',   total: 450  },
-  'therapy-50min-6':  { name: 'CBT Start',          total: 700  },
-  'therapy-50min-8':  { name: 'CAT Start',          total: 940  },
-  'therapy-50min-12': { name: 'CBT and Third Wave', total: 1380 },
-  'therapy-50min-16': { name: 'CAT Full',           total: 1850 },
-  // EMDR blocks (90-min sessions, £180 base):
-  'emdr-90min-4':     { name: 'EMDR+',              total: 650  },
-  'emdr-90min-8':     { name: 'EMDR+ Intensive',    total: 1250 },
+  // Prices must match Zanda's Session Packs (source of truth). Discount capped at ~5%.
+  // Therapy blocks (Clinical Psychology Session, 50 min, £120 base):
+  'therapy-50min-4':  { name: 'Monthly',            total: 470  },
+  'therapy-50min-8':  { name: 'Core',               total: 930  },
+  'therapy-50min-12': { name: 'Complete',           total: 1370 },
+  'therapy-50min-16': { name: 'Intensive',          total: 1825 },
+  // Extended blocks (EMDR Extended, 90 min, £180 base):
+  'emdr-90min-4':     { name: 'Extended Monthly',   total: 700  },
+  'emdr-90min-8':     { name: 'Extended Intensive', total: 1370 },
+  // EMDR+ blocks (2 hr, £240 base):
+  'emdr-2hr-4':       { name: 'EMDR+ Monthly',      total: 930  },
+  'emdr-2hr-8':       { name: 'EMDR+ Intensive',    total: 1825 },
 };
 
 function getSessionCounts(service: ServiceType, duration: SessionDuration): SessionCount[] {
   if (service === 'assessment' || service === 'followup') return [1];
   const key = `${service}-${duration}`;
   const counts: SessionCount[] = [1];
-  ([4, 6, 8, 12, 16] as SessionCount[]).forEach((n) => {
+  ([4, 8, 12, 16] as SessionCount[]).forEach((n) => {
     if (bundleData[`${key}-${n}`]) counts.push(n);
   });
   return counts;
