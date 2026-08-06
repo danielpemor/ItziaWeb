@@ -47,14 +47,22 @@ export default function CookieConsent() {
               >
                 This website uses essential cookies and third-party cookies from
                 Zanda and Calendly for appointment booking. No advertising or tracking
-                cookies are used.{' '}
+                cookies are used. See our{' '}
+                <a
+                  href="/cookies"
+                  className="underline underline-offset-2 transition-colors duration-200"
+                  style={{ color: 'rgba(255,255,255,0.9)' }}
+                >
+                  Cookie Policy
+                </a>{' '}
+                and{' '}
                 <a
                   href="/privacy"
                   className="underline underline-offset-2 transition-colors duration-200"
                   style={{ color: 'rgba(255,255,255,0.9)' }}
                 >
                   Privacy Policy
-                </a>
+                </a>.
               </p>
             </div>
 
