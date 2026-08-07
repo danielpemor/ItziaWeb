@@ -98,6 +98,13 @@ const bundleData: Record<string, { name: string; total: number }> = {
   'emdr-2hr-8':       { name: 'EMDR+ Intensive',    total: 1825 },
 };
 
+// At-a-glance package table (reads from bundleData/individualPrices so it never drifts).
+const packageGroups: { label: string; sub: string; baseKey: string; sessions: number[] }[] = [
+  { label: 'Psychological Therapy', sub: '50-minute sessions', baseKey: 'therapy-50min', sessions: [4, 8, 12, 16] },
+  { label: 'EMDR Extended',         sub: '90-minute sessions', baseKey: 'emdr-90min',    sessions: [4, 8] },
+  { label: 'EMDR+',                 sub: '2-hour sessions',    baseKey: 'emdr-2hr',      sessions: [4, 8] },
+];
+
 function getSessionCounts(service: ServiceType, duration: SessionDuration): SessionCount[] {
   if (service === 'assessment' || service === 'followup') return [1];
   const key = `${service}-${duration}`;
@@ -632,6 +639,77 @@ export default function FeesPage() {
                 </p>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════ BLOCK BOOKINGS TABLE ═══════ */}
+      <section className="py-16" style={{ background: '#ffffff', borderTop: '1px solid rgba(29,78,95,0.07)' }}>
+        <div className="section-container">
+          <div className="max-w-3xl mx-auto">
+            <p className="text-xs font-semibold uppercase tracking-widest mb-2" style={{ color: '#1D4E5F' }}>
+              Block bookings
+            </p>
+            <h2 className="font-display text-display-sm mb-3" style={{ color: '#1C1917' }}>
+              Structured packages, better value
+            </h2>
+            <p className="text-sm mb-8" style={{ color: '#78716C' }}>
+              A focused course of sessions at a reduced rate. Arranged after your initial
+              assessment, and must be used within 4 months of purchase.
+            </p>
+
+            <div className="space-y-8">
+              {packageGroups.map((group) => (
+                <div key={group.baseKey}>
+                  <div className="flex items-baseline justify-between mb-3">
+                    <h3 className="font-display text-lg font-medium" style={{ color: '#1C1917' }}>
+                      {group.label}
+                    </h3>
+                    <span className="text-xs" style={{ color: '#78716C' }}>{group.sub}</span>
+                  </div>
+                  <div className="rounded-xl overflow-hidden" style={{ border: '1px solid rgba(29,78,95,0.1)' }}>
+                    {group.sessions.map((n, i) => {
+                      const bundle = bundleData[`${group.baseKey}-${n}`];
+                      if (!bundle) return null;
+                      const save = n * (individualPrices[group.baseKey] || 0) - bundle.total;
+                      return (
+                        <div
+                          key={n}
+                          className="flex items-center justify-between gap-4 px-5 py-3.5"
+                          style={{
+                            background: i % 2 ? '#FAFAF9' : '#ffffff',
+                            borderTop: i ? '1px solid rgba(0,0,0,0.04)' : 'none',
+                          }}
+                        >
+                          <div>
+                            <p className="text-sm font-medium" style={{ color: '#1C1917' }}>{bundle.name}</p>
+                            <p className="text-xs" style={{ color: '#78716C' }}>{n} sessions</p>
+                          </div>
+                          <div className="text-right flex-shrink-0">
+                            <p className="font-display text-lg font-medium" style={{ color: '#1D4E5F' }}>
+                              {formatGBP(bundle.total)}
+                            </p>
+                            {save > 0 && (
+                              <p className="text-xs font-medium" style={{ color: '#5a7d5e' }}>
+                                Save {formatGBP(save)}
+                              </p>
+                            )}
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <p className="text-xs mt-6" style={{ color: '#78716C' }}>
+              To arrange a block booking,{' '}
+              <a href="/contact?topic=block" className="underline underline-offset-2" style={{ color: '#1D4E5F' }}>
+                get in touch
+              </a>{' '}
+              and I'll set it up for you.
+            </p>
           </div>
         </div>
       </section>
