@@ -6,6 +6,18 @@
       "runtimeExecutable": "npm",
       "runtimeArgs": ["--prefix", "astro-frontend", "run", "dev"],
       "port": 4321
+    },
+    {
+      "name": "landing-dev",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["--prefix", "C:/Users/dpm__/Desktop/DashWeb/landing", "run", "dev"],
+      "port": 4321
+    },
+    {
+      "name": "bcs-alpha",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "5173", "--directory", "C:/Users/dpm__/Desktop/geovoto_proyectos/bcs/web"],
+      "port": 5173
     }
   ]
 }

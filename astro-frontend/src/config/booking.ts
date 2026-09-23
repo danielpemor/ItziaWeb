@@ -32,7 +32,7 @@ export const BOOKING_MODE = 'redirect' as BookingMode;
 
 /** Dr. Morales' live Zanda Client Portal. */
 export const ZANDA_BOOKING_URL =
-  'https://clientportal.uk.zandahealth.com/clientportal/drmorales';
+  'https://clientportal.uk.zandahealth.com/clientportal/myclinicalpsychologist';
 
 /** Internal page that embeds the Zanda widget inside our own nav/footer. */
 export const BOOKING_PAGE = '/booking';
